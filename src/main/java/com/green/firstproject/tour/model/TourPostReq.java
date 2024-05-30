@@ -14,5 +14,5 @@ public class TourPostReq {
     private String tourStartDay;
     private String tourFinishDay;
     private long tourBudget;
-    private long tourColor;
+    private String tourColor;
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.firstproject.tour.TourMapper">
+
+    <insert id="postTour" keyProperty="tourId" useGeneratedKeys="true">
+        INSERT INTO tour
+        SET user_id = #{userId}
+        , tour_location = #{tourLocation}
+        , tour_startday = #{tourStartDay}
+        , tour_finishday = #{tourFinishDay}
+        , tour_budget = #{tourBudget}
+        , tour_color = #{tourColor}
+    </insert>
+    <select id="getTour">
+        SELECT tour_id AS tourId, tour_location AS tourLocation
+             , tour_startday AS tourStartDay, tour_finishday AS tourFinishDay
+             , tour_color AS tourColor
+        FROM tour
+        WHERE user_id = #{signedUserId}
+        ORDER BY tour_id
+    </select>
+    <select id="getTourOne">
+        SELECT tour_id AS tourId, tour_location AS tourLocation
+        , tour_startday AS tourStartDay, tour_finishday AS tourFinishDay
+        , tour_Budget AS tourBudget, created_at AS createdAt, updated_at AS updatedAt
+        FROM tour
+        WHERE tour_id = #{tourId}
+    </select>
+    <delete id="deleteTour">
+        DELETE FROM tour
+        WHERE tour_id = #{tourId} AND user_id = #{signedUserId}
+    </delete>
+    <update id="putTour">
+        UPDATE tour
+        SET tour_location = #{tourLocation}
+        , tour_startday = #{tourStartDay}
+        , tour_finishday = #{tourFinishDay}
+        , tour_budget = #{tourBudget}
+        , tour_color = #{tourColor}
+        WHERE tour_id = #{tourId}
+    </update>
+</mapper>

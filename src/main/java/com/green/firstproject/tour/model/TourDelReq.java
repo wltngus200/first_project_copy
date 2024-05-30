@@ -14,7 +14,7 @@ public class TourDelReq {
     private long tourId;
     @Schema(name = "signed_user_id")
     private long signedUserId;
-    @ConstructorProperties("{tour_id, signed_user_id}")
+    @ConstructorProperties({"tour_id", "signed_user_id"})
     public TourDelReq(long tourId, long signedUserId) {
         this.tourId = tourId;
         this.signedUserId = signedUserId;

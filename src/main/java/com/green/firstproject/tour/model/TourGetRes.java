@@ -7,10 +7,8 @@ import lombok.Setter;
 @Setter
 public class TourGetRes {
     private long tourId;
-    private long tourLocation;
+    private String tourLocation;
     private String tourStartDay;
     private String tourFinishDay;
     private String tourColor;
-    private String createdAt;
-    private String updatedAt;
 }

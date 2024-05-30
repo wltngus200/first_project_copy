@@ -1,20 +1,14 @@
 package com.green.firstproject.tour.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class TourPatchRes {
+@Setter
+public class TourPutReq {
     private long tourId;
     private String tourLocation;
     private String tourStartDay;
     private String tourFinishDay;
     private long tourBudget;
     private String tourColor;
-
 }
