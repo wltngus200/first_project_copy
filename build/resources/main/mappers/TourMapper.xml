@@ -6,6 +6,7 @@
     <insert id="postTour" keyProperty="tourId" useGeneratedKeys="true">
         INSERT INTO tour
         SET user_id = #{userId}
+        , title = #{title}
         , tour_location = #{tourLocation}
         , tour_startday = #{tourStartDay}
         , tour_finishday = #{tourFinishDay}
@@ -13,15 +14,15 @@
         , tour_color = #{tourColor}
     </insert>
     <select id="getTour">
-        SELECT tour_id AS tourId, tour_location AS tourLocation
+        SELECT tour_id AS tourId, title, tour_location AS tourLocation
              , tour_startday AS tourStartDay, tour_finishday AS tourFinishDay
              , tour_color AS tourColor
         FROM tour
         WHERE user_id = #{signedUserId}
         ORDER BY tour_id
     </select>
-    <select id="getTourOne">
-        SELECT tour_id AS tourId, tour_location AS tourLocation
+    <select id="getTourDetail">
+        SELECT tour_id AS tourId, title, tour_location AS tourLocation
         , tour_startday AS tourStartDay, tour_finishday AS tourFinishDay
         , tour_Budget AS tourBudget, created_at AS createdAt, updated_at AS updatedAt
         FROM tour
@@ -34,6 +35,7 @@
     <update id="putTour">
         UPDATE tour
         SET tour_location = #{tourLocation}
+        , title = #{title}
         , tour_startday = #{tourStartDay}
         , tour_finishday = #{tourFinishDay}
         , tour_budget = #{tourBudget}

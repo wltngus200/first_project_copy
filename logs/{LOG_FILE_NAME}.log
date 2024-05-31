@@ -22,3 +22,5 @@
 [2024-05-31 17:14:41 [32mINFO [0;39m RMI TCP Connection(3)-192.168.0.53] [com.zaxxer.hikari.pool.HikariPool] [36mHikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6ff49cf9[0;39m 
 [2024-05-31 17:14:41 [32mINFO [0;39m RMI TCP Connection(3)-192.168.0.53] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Start completed.[0;39m 
 [2024-05-31 17:14:47 [32mINFO [0;39m http-nio-8080-exec-3] [org.springdoc.api.AbstractOpenApiResource] [36mInit duration for springdoc-openapi is: 196 ms[0;39m 
+[2024-05-31 17:49:42 [32mINFO [0;39m SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Shutdown initiated...[0;39m 
+[2024-05-31 17:49:42 [32mINFO [0;39m SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Shutdown completed.[0;39m 
