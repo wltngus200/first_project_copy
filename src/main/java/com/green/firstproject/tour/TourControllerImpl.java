@@ -26,16 +26,16 @@ public class TourControllerImpl {
         return ResultDto.<List<TourGetRes>>builder()
                 .statusCode(HttpStatus.OK)
                 .resultMsg("")
-                .result(result).build();
+                .resultData(result).build();
     }
     @GetMapping("{tourId}")
     @Operation(summary = "여행 계획 상세정보", description = "해당 여행계획의 상세정보 확인 가능")
-    public ResultDto<TourGetOneRes> getTourOne(@RequestParam(name = "tour_id") long tourId) {
-        TourGetOneRes result = service.getTourOne(tourId);
-        return ResultDto.<TourGetOneRes>builder()
+    public ResultDto<TourGetDetailRes> getTourDetail(@RequestParam(name = "tour_id") long tourId) {
+        TourGetDetailRes result = service.getTourDetail(tourId);
+        return ResultDto.<TourGetDetailRes>builder()
                 .statusCode(HttpStatus.OK)
                 .resultMsg("")
-                .result(result).build();
+                .resultData(result).build();
     }
     @PostMapping
     @Operation(summary = "여행 계획 작성", description = "여행 계획 정보를 입력받음")
@@ -44,7 +44,7 @@ public class TourControllerImpl {
         return ResultDto.<Long>builder()
                 .statusCode(HttpStatus.OK)
                 .resultMsg("")
-                .result(result).build();
+                .resultData(result).build();
     }
     @DeleteMapping
     @Operation(summary = "여행 계획 삭제", description = "로그인한 유저 pk와 여행계획 pk를 입력받아 삭제")
@@ -53,7 +53,7 @@ public class TourControllerImpl {
         return ResultDto.<Integer>builder()
                 .statusCode(HttpStatus.OK)
                 .resultMsg("")
-                .result(result).build();
+                .resultData(result).build();
     }
     @PutMapping
     @Operation(summary = "여행 계획 수정", description = "여행 계획 수정")
@@ -62,6 +62,6 @@ public class TourControllerImpl {
         return ResultDto.<Integer>builder()
                 .statusCode(HttpStatus.OK)
                 .resultMsg("")
-                .result(result).build();
+                .resultData(result).build();
     }
 }

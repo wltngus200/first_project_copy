@@ -6,6 +6,7 @@ import lombok.*;
 @Setter
 public class TourPutReq {
     private long tourId;
+    private String title;
     private String tourLocation;
     private String tourStartDay;
     private String tourFinishDay;

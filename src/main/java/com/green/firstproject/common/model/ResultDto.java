@@ -13,5 +13,5 @@ import org.springframework.http.HttpStatus;
 public class ResultDto<T>{
     private HttpStatus statusCode;
     private String resultMsg;
-    private T result;
+    private T resultData;
 }

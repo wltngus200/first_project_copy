@@ -10,6 +10,6 @@ public interface TourMapper {
     int postTour(TourPostReq p);
     int putTour(TourPutReq p);
     List<TourGetRes> getTour(TourGetReq p);
-    TourGetOneRes getTourOne(long tourId);
+    TourGetDetailRes getTourDetail(long tourId);
     int deleteTour(TourDelReq p);
 }

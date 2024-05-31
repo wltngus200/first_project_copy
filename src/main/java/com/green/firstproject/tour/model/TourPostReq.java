@@ -10,6 +10,7 @@ public class TourPostReq {
     @JsonIgnore
     private long tourId;
     private long userId;
+    private String title;
     private String tourLocation;
     private String tourStartDay;
     private String tourFinishDay;

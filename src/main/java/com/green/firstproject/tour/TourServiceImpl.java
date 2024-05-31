@@ -4,7 +4,6 @@ import com.green.firstproject.tour.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,8 +25,8 @@ public class TourServiceImpl implements TourService{
     }
 
     @Override
-    public TourGetOneRes getTourOne(long tourId) {
-        return mapper.getTourOne(tourId);
+    public TourGetDetailRes getTourDetail(long tourId) {
+        return mapper.getTourDetail(tourId);
     }
 
     @Override
