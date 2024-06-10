@@ -2,7 +2,7 @@
   <library name="Gradle: org.springframework.boot:spring-boot-actuator-autoconfigure:3.2.7-SNAPSHOT" type="java-imported" external-system-id="GRADLE">
     <properties groupId="org.springframework.boot" artifactId="spring-boot-actuator-autoconfigure" version="3.2.7-SNAPSHOT" />
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-actuator-autoconfigure/3.2.7-SNAPSHOT/bf6f1bf022555f3f0c598f64614387d0de398902/spring-boot-actuator-autoconfigure-3.2.7-SNAPSHOT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-actuator-autoconfigure/3.2.7-SNAPSHOT/724c91cb0049c0ed72f8ebd069da95cd821be68c/spring-boot-actuator-autoconfigure-3.2.7-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
