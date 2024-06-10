@@ -2,7 +2,7 @@
   <library name="Gradle: org.springframework.boot:spring-boot-test-autoconfigure:3.2.7-SNAPSHOT" type="java-imported" external-system-id="GRADLE">
     <properties groupId="org.springframework.boot" artifactId="spring-boot-test-autoconfigure" version="3.2.7-SNAPSHOT" />
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test-autoconfigure/3.2.7-SNAPSHOT/4a30a2e67cac4ca68be8bc460d7831ce86d612cb/spring-boot-test-autoconfigure-3.2.7-SNAPSHOT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test-autoconfigure/3.2.7-SNAPSHOT/e3f13a08b0db4525c6eab963cb362b44fa762a83/spring-boot-test-autoconfigure-3.2.7-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
