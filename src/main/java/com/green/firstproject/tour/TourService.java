@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TourService {
     long postTour(TourPostReq p);
-    List<TourGetRes> getTour(TourGetReq p);
+    List<TourGetRes> getTour(long signedUserId);
     TourGetDetailRes getTourDetail(long tourId);
     int putTour(TourPutReq p);
     int deleteTour(TourDelReq p);

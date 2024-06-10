@@ -9,7 +9,7 @@ import java.util.List;
 public interface TourMapper {
     int postTour(TourPostReq p);
     int putTour(TourPutReq p);
-    List<TourGetRes> getTour(TourGetReq p);
+    List<TourGetRes> getTour(long signedUserId);
     TourGetDetailRes getTourDetail(long tourId);
     int deleteTour(TourDelReq p);
 }

@@ -17,20 +17,38 @@ import java.util.List;
 @Slf4j
 @RequestMapping("api/tour")
 public class TourControllerImpl {
-    private final TourServiceImpl service;
+    private final TourService service;
     @GetMapping
-    @Operation(summary = "여행계획 리스트", description = "기간과 로그인한 유저의 pk를 받아 일정 출력")
-    public ResultDto<List<TourGetRes>> getTour(@ParameterObject @ModelAttribute TourGetReq p) {
-        List<TourGetRes> result = service.getTour(p);
+    @Operation(summary = "여행계획 리스트",
+            description = "<strong >로그인한 유저의 pk를 받아 해당 유저의 여행계획 출력</strong> <p></p>" +
+            "<p>tourId : 여행 PK(long)</p>" +
+            "<p>title : 여행 제목(String)</p>" +
+            "<p>tourLocation : 여행 위치(String)</p>" +
+            "<p>tourStartDay : 여행 시작일(String)</p>" +
+            "<p>tourFinishDay : 여행 종료일(String)</p>" +
+
+            "<p>tourColor : 일정표에 표시될 색상(String)</p>")
+    public ResultDto<List<TourGetRes>> getTour(@RequestParam("signed_user_id") long signedUserId) {
+        List<TourGetRes> result = service.getTour(signedUserId);
 
         return ResultDto.<List<TourGetRes>>builder()
                 .statusCode(HttpStatus.OK)
                 .resultMsg("")
                 .resultData(result).build();
     }
-    @GetMapping("{tourId}")
-    @Operation(summary = "여행 계획 상세정보", description = "해당 여행계획의 상세정보 확인 가능")
-    public ResultDto<TourGetDetailRes> getTourDetail(@RequestParam(name = "tour_id") long tourId) {
+
+    @GetMapping("detail")
+    @Operation(summary = "여행 계획 상세정보",
+            description = "<strong >여행계획의 PK를 입력받아 여행계획의 상세정보 확인 가능</strong> <p></p>" +
+            "<p>tourId : 여행 PK(long)</p>" +
+            "<p>title : 여행 제목(String)</p>" +
+            "<p>tourLocation : 여행 위치(String)</p>" +
+            "<p>tourStartDay : 여행 시작일(String)</p>" +
+            "<p>tourFinishDay : 여행 종료일(String)</p>" +
+            "<p>tourBudget : 여행 예산(long)</p>" +
+            "<p>createdAt : 생성 시각(String)</p>" +
+            "<p>updatedAt : 수정 시각(String)</p>")
+    public ResultDto<TourGetDetailRes> getTourDetail(@RequestParam("tour_id") long tourId) {
         TourGetDetailRes result = service.getTourDetail(tourId);
         return ResultDto.<TourGetDetailRes>builder()
                 .statusCode(HttpStatus.OK)
@@ -38,7 +56,15 @@ public class TourControllerImpl {
                 .resultData(result).build();
     }
     @PostMapping
-    @Operation(summary = "여행 계획 작성", description = "여행 계획 정보를 입력받음")
+    @Operation(summary = "여행 계획 작성",
+            description = "<strong >여행 계획 작성, 여행 계획의 PK 리턴</strong> <p></p>" +
+                            "<p>userId : 유저 PK(long)</p>" +
+                            "<p>title : 여행 제목(String)</p>" +
+                            "<p>tourLocation : 여행 위치(String)</p>" +
+                            "<p>tourStartDay : 여행 시작일(String)</p>" +
+                            "<p>tourFinishDay : 여행 종료일(String)</p>" +
+                            "<p>tourBudget : 여행 예산(long)</p>" +
+                            "<p>tourColor : 일정표에 표시될 색상(String)</p>")
     public ResultDto<Long> postTour(@RequestBody TourPostReq p) {
         long result = service.postTour(p);
         return ResultDto.<Long>builder()
@@ -56,7 +82,13 @@ public class TourControllerImpl {
                 .resultData(result).build();
     }
     @PutMapping
-    @Operation(summary = "여행 계획 수정", description = "여행 계획 수정")
+    @Operation(summary = "여행 계획 수정", description = "<strong >정보를 입력받아 여행 계획 수정</strong> <p></p>" +
+            "<p>tourId : 여행 PK(long)</p>" +
+            "<p>title : 여행 제목(String)</p>" +
+            "<p>tourLocation : 여행 위치(String)</p>" +
+            "<p>tourStartDay : 여행 시작일(String)</p>" +
+            "<p>tourFinishDay : 여행 종료일(String)</p>" +
+            "<p>tourColor : 일정표에 표시될 색상(String)</p>")
     public ResultDto<Integer> putTour(@RequestBody TourPutReq p) {
         int result = service.putTour(p);
         return ResultDto.<Integer>builder()
