@@ -2,7 +2,7 @@
   <library name="Gradle: org.springframework.boot:spring-boot:3.2.7-SNAPSHOT" type="java-imported" external-system-id="GRADLE">
     <properties groupId="org.springframework.boot" artifactId="spring-boot" version="3.2.7-SNAPSHOT" />
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/3.2.7-SNAPSHOT/5fc2db2fb88d2ed37b2d800de421a4d8b434eb3/spring-boot-3.2.7-SNAPSHOT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/3.2.7-SNAPSHOT/2fef6248eca54b6acd173d2f8562b13ab2a6cd66/spring-boot-3.2.7-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

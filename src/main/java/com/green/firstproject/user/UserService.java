@@ -56,10 +56,8 @@ public class UserService {
         }
         SignInRes res = SignInRes.builder()
                 .userId(user.getUserId())
-                .nm(user.getNm())
-                .createdAt(user.getCreatedAt())
-                .updatedAt(user.getUpdatedAt())
-                .email(user.getEmail())
+                .uid(user.getUid())
+                .upw(user.getUpw())
                 .build();
         return res;
     }
