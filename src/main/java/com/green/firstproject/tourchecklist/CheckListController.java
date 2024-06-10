@@ -2,6 +2,7 @@ package com.green.firstproject.tourchecklist;
 
 import com.green.firstproject.tourchecklist.model.*;
 import com.green.firstproject.common.model.ResultDto;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
@@ -18,6 +19,10 @@ public class CheckListController {
     private final CheckListService service;
 
     @PostMapping
+    @Operation(summary = "여행물품 등록", description =
+            "<p> 변수명 : tour_id(long)" +
+                    "<p> 변수명 : title(String)"
+    )
     public ResultDto<Integer> postCheckList(@ParameterObject @RequestBody PostCheckListReq p){
         int result = service.postCheckList(p);
 
@@ -29,6 +34,11 @@ public class CheckListController {
     }
 
     @PutMapping
+    @Operation(summary = "여행물품 수정",
+            description =
+                    "<p> 변수명 : checklist_id(long) </p>" +
+                            "<p> 변수명 : title(String) </p>"
+    )
     public ResultDto<Integer> putCheckList(@ParameterObject @RequestBody PutCheckListReq p){
         int result = service.putCheckList(p);
 
@@ -40,6 +50,10 @@ public class CheckListController {
     }
 
     @DeleteMapping
+    @Operation(summary = "여행물품 삭제",
+            description =
+                    "<p> 변수명 : checklist_id(long) </p>"
+    )
     public ResultDto<Integer> deleteCheckList(@RequestParam("checklist_id") int checklistId){
         int result = service.deleteCheckList(checklistId);
 
@@ -51,6 +65,10 @@ public class CheckListController {
     }
 
     @GetMapping
+    @Operation(summary = "여행물품 리스트",
+            description =
+                    "<p> 변수명 : tour_id </p>"
+    )
     public ResultDto<List<GetCheckListRes>> getCheckList(@ParameterObject @ModelAttribute GetCheckListReq p){
         List<GetCheckListRes> result = service.getCheckList(p);
 
@@ -62,6 +80,7 @@ public class CheckListController {
     }
 
     @PatchMapping
+    @Operation(summary = "여행물품 체크")
     public ResultDto<Integer> toggleCheckList(@RequestBody ToggleCheckList p){
         int result = service.toggleCheckList(p);
 
