@@ -83,7 +83,7 @@ public class TourScheduleController {
                 .build();
     }
 
-    @PatchMapping
+    @PutMapping
     @Operation(summary = "일정 스케줄 수정", description =
             "<strong > 일정 스케줄 수정 </strong> <p></p>" +
                     "<p> tourScheduleDay : 여행 n일차 (long) </p>" +

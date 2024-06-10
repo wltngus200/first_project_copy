@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.green.firstproject.tourschedule.TourScheduleMapper">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.firstproject.tourschedule.TourScheduleMapper">        <!-- user 인터페이스 주소명.인터페이스 파일명 -->
     <insert id="postSchedule" keyProperty="tourScheduleId" useGeneratedKeys="true">
         INSERT INTO tour_schedule
         SET tour_id = #{tourId}
@@ -9,43 +10,41 @@
         , tour_schedule_start = #{tourScheduleStart}
         , tour_schedule_end = #{tourScheduleEnd}
         , title = #{title}
-        , tag = #{tag}
         , contents = #{contents}
         , cost = #{cost}
     </insert>
-    <select id="getSchedule">
-        SELECT tour_schedule_id AS tourScheduleId
-        , tour_schedule_day AS tourScheduleDay
-        , tour_schedule_start AS tourScheduleStart
-        , tour_schedule_end AS tourScheduleEnd
-        , title
-        FROM tour_schedule
-        WHERE tour_id = #{tourId} AND tour_schedule_day = #{tourScheduleDay}
-    </select>
-    <select id ="getScheduleDetail">
-        SELECT tour_schedule_id AS tourScheduleId
-        , tour_schedule_start AS tourScheduleStart
-        , tour_schedule_end AS tourScheduleEnd
-        , title
-        , tag
-        , contents
-        , cost
-        FROM tour_schedule
-        WHERE tour_schedule_id = #{tourScheduleId}
-    </select>
-    <update id="putSchedule">
-        UPDATE tour_schedule
-        SET tour_schedule_day = #{tourScheduleDay}
-        , tour_schedule_start = #{tourScheduleStart}
-        , tour_schedule_end = #{tourScheduleEnd}
-        , title = #{title}
-        , tag = #{tag}
-        , contents = #{contents}
-        , cost = #{cost}
-        WHERE tour_schedule_id = #{tourScheduleId}
-    </update>
+
     <delete id="deleteSchedule">
         DELETE FROM tour_schedule
         WHERE tour_id = #{tourId} AND tour_schedule_id = #{tourScheduleId}
     </delete>
+    
+    <select id="getTourSchedule">
+        SELECT tour_schedule_id AS tourScheduleId, tour_schedule_day AS tourScheduleDay, tour_schedule_start AS tourScheduleStart
+        , tour_schedule_end AS tourScheduleEnd, title, contents, cost
+        FROM tour_schedule
+        WHERE tour_schedule_id = #{tourScheduleId}
+    </select>
+    
+    <update id="updateScheduleDay">
+        UPDATE tour_schedule
+        SET
+            tour_schedule_day = #{tourScheduleDay},
+            tour_schedule_start = #{tourScheduleStart},
+            tour_schedule_end = #{tourScheduleEnd},
+            title = #{title},
+            contents = #{contents},
+            cost = #{cost}
+        WHERE tour_schedule_id = #{tourScheduleId}
+    </update>
+
+    <select id="getTourScheduleList">
+        SELECT tour_schedule_id AS tourScheduleId, tour_schedule_day AS tourScheduleDay, tour_schedule_start AS tourScheduleStart
+        , tour_schedule_end AS tourScheduleEnd, title, contents, cost
+        FROM tour_schedule
+        WHERE tour_id = #{tourId} AND tour_schedule_day = #{tourScheduleDay}
+        ORDER BY tour_schedule_day ASC;
+    </select>
+
+
 </mapper>
