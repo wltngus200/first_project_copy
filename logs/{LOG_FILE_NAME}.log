@@ -298,3 +298,24 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 [2024-06-10 16:46:57 [32mINFO [0;39m RMI TCP Connection(2)-192.168.0.53] [com.zaxxer.hikari.pool.HikariPool] [36mHikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@5aa8fe7d[0;39m 
 [2024-06-10 16:46:57 [32mINFO [0;39m RMI TCP Connection(2)-192.168.0.53] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Start completed.[0;39m 
 [2024-06-10 16:47:00 [32mINFO [0;39m http-nio-8080-exec-10] [org.springdoc.api.AbstractOpenApiResource] [36mInit duration for springdoc-openapi is: 251 ms[0;39m 
+[2024-06-10 16:48:05 [32mINFO [0;39m File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener] [36mRestarting due to 3 class path changes (0 additions, 0 deletions, 3 modifications)[0;39m 
+[2024-06-10 16:48:05 [32mINFO [0;39m Thread-5] [org.apache.coyote.http11.Http11NioProtocol] [36mStopping ProtocolHandler ["http-nio-8080"][0;39m 
+[2024-06-10 16:48:05 [32mINFO [0;39m Thread-5] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Shutdown initiated...[0;39m 
+[2024-06-10 16:48:05 [32mINFO [0;39m Thread-5] [com.zaxxer.hikari.HikariDataSource] [36mHikariPool-1 - Shutdown completed.[0;39m 
+[2024-06-10 16:48:05 [32mINFO [0;39m restartedMain] [com.green.firstproject.FirstProjectApplication] [36mStarting FirstProjectApplication using Java 17.0.11 with PID 14100 (D:\2024-01\backend\FirstProject\build\classes\java\main started by Administrator in D:\2024-01\backend\FirstProject)[0;39m 
+[2024-06-10 16:48:05 [32mINFO [0;39m restartedMain] [com.green.firstproject.FirstProjectApplication] [36mNo active profile set, falling back to 1 default profile: "default"[0;39m 
+[2024-06-10 16:48:05 [33mWARN [0;39m restartedMain] [org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] [36mBean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [annotationActionEndpointMapping] is declared through a non-static factory method on that class; consider declaring it as static instead.[0;39m 
+[2024-06-10 16:48:05 [32mINFO [0;39m restartedMain] [org.springframework.ws.soap.addressing.server.AnnotationActionEndpointMapping] [36mSupporting [WS-Addressing August 2004, WS-Addressing 1.0][0;39m 
+[2024-06-10 16:48:05 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat initialized with port 8080 (http)[0;39m 
+[2024-06-10 16:48:05 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mInitializing ProtocolHandler ["http-nio-8080"][0;39m 
+[2024-06-10 16:48:05 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardService] [36mStarting service [Tomcat][0;39m 
+[2024-06-10 16:48:05 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.StandardEngine] [36mStarting Servlet engine: [Apache Tomcat/10.1.24][0;39m 
+[2024-06-10 16:48:06 [32mINFO [0;39m restartedMain] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] [36mInitializing Spring embedded WebApplicationContext[0;39m 
+[2024-06-10 16:48:06 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [36mRoot WebApplicationContext: initialization completed in 297 ms[0;39m 
+[2024-06-10 16:48:06 [32mINFO [0;39m restartedMain] [org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping] [36mAdding welcome page: class path resource [static/index.html][0;39m 
+[2024-06-10 16:48:06 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [36mLiveReload server is running on port 35729[0;39m 
+[2024-06-10 16:48:06 [32mINFO [0;39m restartedMain] [org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver] [36mExposing 1 endpoint(s) beneath base path '/actuator'[0;39m 
+[2024-06-10 16:48:06 [32mINFO [0;39m restartedMain] [org.apache.coyote.http11.Http11NioProtocol] [36mStarting ProtocolHandler ["http-nio-8080"][0;39m 
+[2024-06-10 16:48:06 [32mINFO [0;39m restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [36mTomcat started on port 8080 (http) with context path ''[0;39m 
+[2024-06-10 16:48:06 [32mINFO [0;39m restartedMain] [com.green.firstproject.FirstProjectApplication] [36mStarted FirstProjectApplication in 0.564 seconds (process running for 71.991)[0;39m 
+[2024-06-10 16:48:06 [32mINFO [0;39m restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [36mCondition evaluation unchanged[0;39m 
