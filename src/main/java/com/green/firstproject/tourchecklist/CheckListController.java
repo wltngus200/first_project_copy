@@ -23,7 +23,7 @@ public class CheckListController {
             "<p> 변수명 : tour_id(long)" +
                     "<p> 변수명 : title(String)"
     )
-    public ResultDto<Integer> postCheckList(@ParameterObject @RequestBody PostCheckListReq p){
+    public ResultDto<Integer> postCheckList(@RequestBody PostCheckListReq p){
         int result = service.postCheckList(p);
 
         return ResultDto.<Integer>builder()
@@ -39,7 +39,7 @@ public class CheckListController {
                     "<p> 변수명 : checklist_id(long) </p>" +
                             "<p> 변수명 : title(String) </p>"
     )
-    public ResultDto<Integer> putCheckList(@ParameterObject @RequestBody PutCheckListReq p){
+    public ResultDto<Integer> putCheckList(@RequestBody PutCheckListReq p){
         int result = service.putCheckList(p);
 
         return ResultDto.<Integer>builder()
