@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.firstproject.tourchecklist.CheckListMapper">
+
+
+    <insert id="postCheckList" useGeneratedKeys="true" keyProperty="checklistId">
+        INSERT INTO tour_checklist
+        SET title = #{title}
+        , tour_id = #{tourId}
+    </insert>
+
+    <update id="putCheckList">
+        UPDATE tour_checklist
+        SET title = #{title}
+        WHERE checklist_id = #{checklistId}
+
+    </update>
+
+    <delete id="deleteCheckList">
+        DELETE FROM tour_checklist
+        WHERE checklist_id = #{checklistId}
+    </delete>
+
+    <select id="getCheckList">
+        SELECT title
+        FROM tour_checklist
+        WHERE tour_id = #{tourId}
+    </select>
+
+    <update id="toggleCheckList">
+        UPDATE tour_checklist
+        SET checked = case
+        when checked = 1 then 0
+        when checked = 0 then 1
+        END
+        WHERE checklist_id = #{checklistId};
+    </update>
+</mapper>
