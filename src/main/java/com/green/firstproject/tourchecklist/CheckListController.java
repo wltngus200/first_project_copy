@@ -24,6 +24,7 @@ public class CheckListController {
                     "<p> 변수명 : title(String)"
     )
     public ResultDto<Integer> postCheckList(@RequestBody PostCheckListReq p){
+        log.info("p: {}", p);
         int result = service.postCheckList(p);
 
         return ResultDto.<Integer>builder()
