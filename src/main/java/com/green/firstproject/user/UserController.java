@@ -39,7 +39,7 @@ public class UserController {
     @Operation(summary="유저 로그인",
             description = "<strong> 변수명 : uid </strong> <p> 회원 아이디 ex)abc1231 </p>"+"\n"+
                           "<strong> 변수명 : upw </strong> <p> 회원 비밀번호 ex)aa123 </p>" +"\n")
-    public ResultDto<SignInRes> signInUser(@ModelAttribute @ParameterObject SignInReq p){
+    public ResultDto<SignInRes> signInUser(@RequestBody SignInReq p){
         SignInRes result=service.signInUser(p);
         log.info("{},{}",p,result);
         return ResultDto.<SignInRes>builder()
