@@ -35,4 +35,9 @@
         END
         WHERE checklist_id = #{checklistId};
     </update>
+
+    <delete id="deleteDayCheckList">
+        DELETE FROM tour_checklist
+        WHERE tour_id = #{tourId}
+    </delete>
 </mapper>
