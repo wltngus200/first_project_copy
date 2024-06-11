@@ -12,6 +12,7 @@ public interface CheckListMapper {
     int deleteCheckList(int p);
     List<GetCheckListRes> getCheckList(GetCheckListReq p);
     int toggleCheckList(ToggleCheckList p);
+    int deleteDayCheckList(int p);
 
 
 }

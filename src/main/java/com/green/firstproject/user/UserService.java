@@ -89,9 +89,8 @@ public class UserService {
 
     public void validateUser(SignUpReq p) {
         //회원가입 유효성 검사
-        boolean validId = Validator.isValidId(p.getUid());
 
-        if (!validId) {
+        if (!Validator.isValidId(p.getUid())) {
             throw new RuntimeException(UserErrorMessage.USER_ID_CHECK_MESSAGE);
         } else if (!Validator.isValidPassword(p.getUpw())) {
             throw new RuntimeException(UserErrorMessage.USER_PASSWORD_CHECK_MESSAGE);

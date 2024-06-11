@@ -12,6 +12,6 @@ import lombok.ToString;
 public class PostCheckListReq {
     @JsonIgnore
     private long checklistId;
-    private String title;
     private long tourId;
+    private String title;
 }

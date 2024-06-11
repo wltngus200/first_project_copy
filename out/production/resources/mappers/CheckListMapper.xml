@@ -5,8 +5,8 @@
 
     <insert id="postCheckList" keyProperty="checklistId" useGeneratedKeys="true" >
         INSERT INTO tour_checklist
-        SET title = #{title}
-        , tour_id = #{tourId}
+        SET tour_id = #{tourId}
+        , title = #{title}
     </insert>
 
     <update id="putCheckList">
@@ -22,7 +22,7 @@
     </delete>
 
     <select id="getCheckList">
-        SELECT title
+        SELECT checklist_id AS checklistId, title, checked
         FROM tour_checklist
         WHERE tour_id = #{tourId}
     </select>
@@ -35,4 +35,9 @@
         END
         WHERE checklist_id = #{checklistId};
     </update>
+
+    <delete id="deleteDayCheckList">
+        DELETE FROM tour_checklist
+        WHERE tour_id = #{tourId}
+    </delete>
 </mapper>

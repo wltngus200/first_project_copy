@@ -3,6 +3,7 @@ package com.green.firstproject.tourchecklist;
 import com.green.firstproject.tourchecklist.model.*;
 import com.green.firstproject.common.model.ResultDto;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
@@ -89,6 +90,17 @@ public class CheckListController {
                 .resultData(result)
                 .statusCode(HttpStatus.OK)
                 .resultMsg("")
+                .build();
+    }
+    @DeleteMapping("/day")
+    @Operation(summary = "전체삭제")
+    public ResultDto<Integer> deleteDayCheckList(@RequestParam("tour_id") int tourId){
+        int result = service.deleteDayCheckList(tourId);
+
+        return ResultDto.<Integer>builder()
+                .resultData(result)
+                .statusCode(HttpStatus.OK)
+                .resultMsg("물품을 삭제하였습니다.")
                 .build();
     }
 }

@@ -3,6 +3,7 @@ package com.green.firstproject.user;
 import com.green.firstproject.common.model.Result;
 import com.green.firstproject.common.model.ResultDto;
 import com.green.firstproject.common.model.ResultError;
+import com.green.firstproject.common.model.ResultSuccess;
 import com.green.firstproject.user.model.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -31,20 +32,19 @@ public class UserController {
 
     public Result signUpUser(@RequestBody SignUpReq p){
         log.info("p : {}", p);
+        //유효성 검사
         try {
             service.validateUser(p);
         } catch (RuntimeException e) {
             log.info(e.getMessage());
-            return ResultError.builder()
-                    .resultMsg(e.getMessage())
-                    .statusCode(0)
-                    .build();
+            return ResultError.builder().resultMsg(e.getMessage()).statusCode(0).build();
         }
-        int result=service.signUpUser(p);
+        //검증 통과 DB IN
+        int result = service.signUpUser(p);
 
-        log.info("p2 : {}",  p);
+        log.info("DB IN p2 : {}",  p);
 
-        return ResultDto.<Integer>builder()
+        return ResultSuccess.<Integer>builder()
                 .statusCode(HttpStatus.OK)
                 .resultData(result)
                 .resultMsg("회원가입에 성공하였습니다.")
@@ -55,7 +55,7 @@ public class UserController {
     @Operation(summary="유저 로그인",
             description = "<strong> 변수명 : uid </strong> <p> 회원 아이디 ex)abc1231 </p>"+"\n"+
                           "<strong> 변수명 : upw </strong> <p> 회원 비밀번호 ex)aa123 </p>" +"\n")
-    public ResultDto<SignInRes> signInUser(@ModelAttribute @ParameterObject SignInReq p){
+    public ResultDto<SignInRes> signInUser(@RequestBody SignInReq p){
         SignInRes result=service.signInUser(p);
         log.info("{},{}",p,result);
         return ResultDto.<SignInRes>builder()
