@@ -22,7 +22,7 @@ public class TourScheduleController {
     @Operation(summary = "일정 스케줄 등록", description =
             "<strong > 일정 스케줄 등록 </strong> <p></p>" +
                     "<p> tourId : 여행 PK (long) </p>" +
-                    "<p> tourScheduleDay : 여행 n일차 (long) </p>" +
+                    "<p> tourScheduleDay : 여행 일자 (String) </p>" +
                     "<p> tourScheduleStart : 시작 시간(String) </p>" +
                     "<p> tourScheduleEnd : 끝나는 시간(String) </p>" +
                     "<p> title : 제목(String) </p>" +
