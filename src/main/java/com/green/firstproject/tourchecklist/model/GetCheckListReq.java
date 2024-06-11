@@ -10,14 +10,10 @@ import java.beans.ConstructorProperties;
 @Setter
 @Getter
 public class GetCheckListReq {
-    @JsonIgnore
-    private long checklistId;
     @Schema(name = "tour_id", description = "여행정보")
     private long tourId;
     @ConstructorProperties({"tour_id"})
-    public GetCheckListReq(long tourId){
+    public GetCheckListReq(long tourId) {
         this.tourId = tourId;
     }
-
-
 }
