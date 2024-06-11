@@ -12,8 +12,6 @@ import lombok.ToString;
 public class PostCheckListReq {
     @JsonIgnore
     private long checklistId;
-    @Schema(description = "여행물품")
     private String title;
-    @Schema(name = "tour_id")
     private long tourId;
 }

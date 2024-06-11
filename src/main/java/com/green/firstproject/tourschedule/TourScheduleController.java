@@ -22,7 +22,7 @@ public class TourScheduleController {
     @Operation(summary = "일정 스케줄 등록", description =
             "<strong > 일정 스케줄 등록 </strong> <p></p>" +
                     "<p> tourId : 여행 PK (long) </p>" +
-                    "<p> tourScheduleDay : 여행 n일차 (long) </p>" +
+                    "<p> tourScheduleDay : 여행 일자 (String) </p>" +
                     "<p> tourScheduleStart : 시작 시간(String) </p>" +
                     "<p> tourScheduleEnd : 끝나는 시간(String) </p>" +
                     "<p> title : 제목(String) </p>" +
@@ -72,7 +72,7 @@ public class TourScheduleController {
     @Operation(summary = "일정 스케줄 리스트", description =
             "<strong > 일정 스케줄 등록 </strong> <p></p>" +
                     "<p> tourId : 여행 PK (long) </p>" +
-                    "<p> tourScheduleDay : 여행 n일차 (long) </p>")
+                    "<p> tourScheduleDay : 여행 일자 (String) </p>")
     public ResultDto<List<TourScheduleGetListRes>> getTourScheduleList(@ParameterObject @ModelAttribute TourScheduleGetReq p) {
         List<TourScheduleGetListRes> result = service.getTourScheduleList(p);
 
@@ -86,14 +86,14 @@ public class TourScheduleController {
     @PutMapping
     @Operation(summary = "일정 스케줄 수정", description =
             "<strong > 일정 스케줄 수정 </strong> <p></p>" +
-                    "<p> tourScheduleDay : 여행 n일차 (long) </p>" +
+                    "<p> tourScheduleDay : 여행 일자 (String) </p>" +
                     "<p> tourScheduleStart : 시작 시간(String) </p>" +
                     "<p> tourScheduleEnd : 끝나는 시간(String) </p>" +
                     "<p> title : 제목(String) </p>" +
                     "<p> contents : 내용(String) </p>" +
                     "<p> cost : 예산(long) </p>" +
                     "<p> tourScheduleId : 여행 스케줄 PK </p>")
-    public ResultDto<Integer> updateScheduleDay(@RequestBody TourSchedulePatchReq p) {
+    public ResultDto<Integer> updateScheduleDay(@RequestBody TourSchedulePutReq p) {
         int result = service.updateScheduleDay(p);
         log.info("result : {}", result);
         log.info("p : {}", p);

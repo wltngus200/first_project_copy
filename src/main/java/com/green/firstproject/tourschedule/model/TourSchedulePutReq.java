@@ -4,7 +4,7 @@ package com.green.firstproject.tourschedule.model;
 import lombok.Data;
 
 @Data
-public class TourSchedulePatchReq {
+public class TourSchedulePutReq {
     private long tourScheduleId;
     private String tourScheduleDay;
     private String tourScheduleStart;

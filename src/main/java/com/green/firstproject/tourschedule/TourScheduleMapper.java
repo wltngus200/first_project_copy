@@ -15,5 +15,5 @@ public interface TourScheduleMapper {
 
     List<TourScheduleGetListRes> getTourScheduleList(TourScheduleGetReq p);
 
-    int updateScheduleDay(TourSchedulePatchReq p);
+    int updateScheduleDay(TourSchedulePutReq p);
 }
