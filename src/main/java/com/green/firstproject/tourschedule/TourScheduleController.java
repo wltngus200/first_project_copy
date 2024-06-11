@@ -21,13 +21,13 @@ public class TourScheduleController {
     @PostMapping
     @Operation(summary = "일정 스케줄 등록", description =
             "<strong > 일정 스케줄 등록 </strong> <p></p>" +
-                    "<p> tourId : 여행 PK (long) </p>" +
-                    "<p> tourScheduleDay : 여행 일자 (String) </p>" +
-                    "<p> tourScheduleStart : 시작 시간(String) </p>" +
-                    "<p> tourScheduleEnd : 끝나는 시간(String) </p>" +
-                    "<p> title : 제목(String) </p>" +
-                    "<p> contents : 내용(String) </p>" +
-                    "<p> cost : 예산(long) </p>")
+                    "<p><strong> tourId</strong> : 여행 PK (long) </p>" +
+                    "<p><strong> tourScheduleDay</strong> : 여행 일자 (String) </p>" +
+                    "<p><strong> tourScheduleStart</strong> : 시작 시간(String) </p>" +
+                    "<p><strong> tourScheduleEnd</strong> : 끝나는 시간(String) </p>" +
+                    "<p><strong> title</strong> : 제목(String) </p>" +
+                    "<p><strong> contents</strong> : 내용(String) </p>" +
+                    "<p><strong> cost</strong> : 예산(long) </p>")
     public ResultDto<Long> postSchedule(@RequestBody TourSchedulePostReq p) {
         long result = service.postSchedule(p);
 
@@ -41,8 +41,8 @@ public class TourScheduleController {
     @DeleteMapping
     @Operation(summary = "일정 스케줄 삭제", description =
             "<strong > 일정 스케줄 삭제 </strong> <p></p>" +
-                    "<p> tourId : 여행 PK (long) </p>" +
-                    "<p> tourScheduleId : 여행 스케줄 PK (long) </p>")
+            "<p><strong> tourId</strong> : 여행 PK (long) </p>" +
+            "<p><strong> tourScheduleId</strong> : 여행 스케줄 PK (long) </p>")
     public ResultDto<Integer> deleteSchedule(@ParameterObject @ModelAttribute TourScheduleDeleteReq p) {
         int result = service.deleteSchedule(p);
 
@@ -56,7 +56,7 @@ public class TourScheduleController {
     @GetMapping("{tourScheduleId}")
     @Operation(summary = "일정 스케줄 상세페이지", description =
             "<strong > 일정 스케줄 등록 </strong> <p></p>" +
-                    "<p> tourScheduleId : 여행 스케줄 PK (long) </p>")
+            "<p><strong> tourScheduleId</strong> : 여행 스케줄 PK (long) </p>")
     public ResultDto<TourScheduleGetRes> getTourSchedule(@PathVariable long tourScheduleId) {
         TourScheduleGetRes result = service.getTourSchedule(tourScheduleId);
 
@@ -71,8 +71,8 @@ public class TourScheduleController {
     @GetMapping("tourScheduleList")
     @Operation(summary = "일정 스케줄 리스트", description =
             "<strong > 일정 스케줄 등록 </strong> <p></p>" +
-                    "<p> tourId : 여행 PK (long) </p>" +
-                    "<p> tourScheduleDay : 여행 일자 (String) </p>")
+            "<p><strong> tourId</strong> : 여행 PK (long) </p>" +
+            "<p><strong> tourScheduleDay</strong> : 여행 일자 (String) </p>")
     public ResultDto<List<TourScheduleGetListRes>> getTourScheduleList(@ParameterObject @ModelAttribute TourScheduleGetReq p) {
         List<TourScheduleGetListRes> result = service.getTourScheduleList(p);
 
@@ -86,13 +86,13 @@ public class TourScheduleController {
     @PutMapping
     @Operation(summary = "일정 스케줄 수정", description =
             "<strong > 일정 스케줄 수정 </strong> <p></p>" +
-                    "<p> tourScheduleDay : 여행 일자 (String) </p>" +
-                    "<p> tourScheduleStart : 시작 시간(String) </p>" +
-                    "<p> tourScheduleEnd : 끝나는 시간(String) </p>" +
-                    "<p> title : 제목(String) </p>" +
-                    "<p> contents : 내용(String) </p>" +
-                    "<p> cost : 예산(long) </p>" +
-                    "<p> tourScheduleId : 여행 스케줄 PK </p>")
+                    "<p><strong> tourScheduleDay</strong> : 여행 일자 (String) </p>" +
+                    "<p><strong> tourScheduleStart</strong> : 시작 시간(String) </p>" +
+                    "<p><strong> tourScheduleEnd</strong> : 끝나는 시간(String) </p>" +
+                    "<p><strong> title</strong> : 제목(String) </p>" +
+                    "<p><strong> contents</strong> : 내용(String) </p>" +
+                    "<p><strong> cost</strong> : 예산(long) </p>" +
+                    "<p><strong> tourScheduleId</strong> : 여행 스케줄 PK </p>")
     public ResultDto<Integer> updateScheduleDay(@RequestBody TourSchedulePutReq p) {
         int result = service.updateScheduleDay(p);
         log.info("result : {}", result);

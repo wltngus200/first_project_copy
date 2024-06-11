@@ -1,8 +1,11 @@
 package com.green.firstproject.user;
 
+import com.green.firstproject.common.model.Result;
 import com.green.firstproject.common.model.ResultDto;
+import com.green.firstproject.common.model.ResultError;
 import com.green.firstproject.user.model.*;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
@@ -20,14 +23,27 @@ public class UserController {
 
     @PostMapping("sign-up")
     @Operation(summary = "유저 회원가입",
-            description = "<strong> 변수명 : uid </strong> <p> 회원 아이디 ex)abc1231 </p>"+"\n"+
-                          "<strong> 변수명 : upw </strong> <p> 회원 비밀번호 ex)aa123 </p>" +"\n"+
-                          "<strong> 변수명 : nm </strong> <p> 회원 이름 ex)홍길동 </p>"+"\n"+
+            description = "<strong> 변수명 : uid </strong> <p> 회원 아이디 ex)abc1231 </p>" +
+                          "<strong> 변수명 : upw </strong> <p> 회원 비밀번호 ex)aa123 </p>" +
+                          "<strong> 변수명 : nm </strong> <p> 회원 이름 ex)홍길동 </p>" +
                           "<strong> 변수명 : email </strong> <p> 회원 이메일 ex)abc1231@naver.com </p>")
-    public ResultDto<Integer> signUpUser(@RequestBody SignUpReq p){
+    @ApiResponse
+
+    public Result signUpUser(@RequestBody SignUpReq p){
         log.info("p : {}", p);
+        try {
+            service.validateUser(p);
+        } catch (RuntimeException e) {
+            log.info(e.getMessage());
+            return ResultError.builder()
+                    .resultMsg(e.getMessage())
+                    .statusCode(0)
+                    .build();
+        }
         int result=service.signUpUser(p);
+
         log.info("p2 : {}",  p);
+
         return ResultDto.<Integer>builder()
                 .statusCode(HttpStatus.OK)
                 .resultData(result)
@@ -50,7 +66,8 @@ public class UserController {
     }
     @PutMapping("password")
     @Operation(summary="비밀번호 수정",
-            description="<strong> 변수명 : uid </strong> <p> 회원 아이디 ex)abc1231 </p>"+"\n"+
+            description=
+                    "<strong> 변수명 : uid </strong> <p> 회원 아이디 ex)abc1231 </p>"+"\n"+
                     "<strong> 변수명 : upw </strong> <p> 회원 비밀번호 ex)aa123 </p>" +"\n"+
                     "<strong> 변수명 : newPw </strong> <p> 새로운 비밀번호 ex)bb123 </p>"+"\n")
     public ResultDto<Integer> updateUpw(@ModelAttribute @ParameterObject ChangeUpwReq p){
