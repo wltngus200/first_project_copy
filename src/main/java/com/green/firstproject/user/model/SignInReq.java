@@ -5,8 +5,8 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class SignInReq {
     private String uid;
     private String upw;
