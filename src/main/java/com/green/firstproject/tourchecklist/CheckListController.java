@@ -21,7 +21,7 @@ public class CheckListController {
 
     @PostMapping
     @Operation(summary = "여행물품 등록", description =
-            "<p> 변수명 : tour_id(long)" +
+            "<p> 변수명 : tourId(long)" +
                     "<p> 변수명 : title(String)"
     )
     public ResultDto<Integer> postCheckList(@RequestBody PostCheckListReq p){
