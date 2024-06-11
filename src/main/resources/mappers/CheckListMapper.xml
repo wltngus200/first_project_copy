@@ -5,8 +5,8 @@
 
     <insert id="postCheckList" useGeneratedKeys="true" keyProperty="checklistId">
         INSERT INTO tour_checklist
-        SET title = #{title}
-        , tour_id = #{tourId}
+        SET tour_id = #{tourId}
+        , title = #{title}
     </insert>
 
     <update id="putCheckList">

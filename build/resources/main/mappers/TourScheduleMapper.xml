@@ -28,14 +28,13 @@
     
     <update id="updateScheduleDay">
         UPDATE tour_schedule
-        <set>
-            <if test="tourScheduleDay > 0"> tour_schedule_day = #{tourScheduleDay}</if>
-            <if test="tourScheduleStart != null and tourScheduleStart != ''">, tour_schedule_start = #{tourScheduleStart}</if>
-            <if test="tourScheduleEnd != null and tourScheduleEnd != ''">, tour_schedule_end = #{tourScheduleEnd}</if>
-            <if test="title != null and title != ''">, title = #{title}</if>
-            <if test="contents != null and contents != ''">, contents = #{contents}</if>
-            <if test="cost >= 0">, cost = #{cost}</if>
-        </set>
+        SET
+            tour_schedule_day = #{tourScheduleDay},
+            tour_schedule_start = #{tourScheduleStart},
+            tour_schedule_end = #{tourScheduleEnd},
+            title = #{title},
+            contents = #{contents},
+            cost = #{cost}
         WHERE tour_schedule_id = #{tourScheduleId}
     </update>
 
