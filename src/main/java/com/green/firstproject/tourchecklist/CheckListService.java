@@ -15,7 +15,7 @@ public class CheckListService {
     private final CheckListMapper mapper;
 
     public int postCheckList(PostCheckListReq p) {
-
+        log.info("{}", p.toString());
         return mapper.postCheckList(p);
     }
 

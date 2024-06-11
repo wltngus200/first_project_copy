@@ -3,7 +3,7 @@
 <mapper namespace="com.green.firstproject.tourchecklist.CheckListMapper">
 
 
-    <insert id="postCheckList" useGeneratedKeys="true" keyProperty="checklistId">
+    <insert id="postCheckList" keyProperty="checklistId" useGeneratedKeys="true" >
         INSERT INTO tour_checklist
         SET tour_id = #{tourId}
         , title = #{title}
