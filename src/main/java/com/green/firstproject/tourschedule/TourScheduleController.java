@@ -57,7 +57,7 @@ public class TourScheduleController {
     @Operation(summary = "일정 스케줄 상세페이지", description =
             "<strong > 일정 스케줄 등록 </strong> <p></p>" +
                     "<p> tourScheduleId : 여행 스케줄 PK (long) </p>")
-    public ResultDto<TourScheduleGetRes> getTourSchedule(@PathVariable long tourScheduleId) {
+    public ResultDto<TourScheduleGetRes> getTourSchedule(@PathVariable("tourScheduleId") long tourScheduleId) {
         TourScheduleGetRes result = service.getTourSchedule(tourScheduleId);
 
 
