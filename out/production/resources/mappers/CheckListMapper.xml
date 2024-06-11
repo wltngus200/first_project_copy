@@ -22,7 +22,7 @@
     </delete>
 
     <select id="getCheckList">
-        SELECT title
+        SELECT checklist_id AS checklistId, title, checked
         FROM tour_checklist
         WHERE tour_id = #{tourId}
     </select>
