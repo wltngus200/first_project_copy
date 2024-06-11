@@ -11,7 +11,7 @@ public class TourScheduleGetListRes {
     private long tourScheduleId;
 
     @Schema(name = "tour_schedule_day")
-    private long tourScheduleDay;
+    private String tourScheduleDay;
 
     @Schema(name = "tour_schedule_start")
     private String tourScheduleStart;

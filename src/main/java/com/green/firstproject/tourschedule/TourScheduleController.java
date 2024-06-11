@@ -93,7 +93,7 @@ public class TourScheduleController {
                     "<p> contents : 내용(String) </p>" +
                     "<p> cost : 예산(long) </p>" +
                     "<p> tourScheduleId : 여행 스케줄 PK </p>")
-    public ResultDto<Integer> updateScheduleDay(@RequestBody TourSchedulePatchReq p) {
+    public ResultDto<Integer> updateScheduleDay(@RequestBody TourSchedulePutReq p) {
         int result = service.updateScheduleDay(p);
         log.info("result : {}", result);
         log.info("p : {}", p);

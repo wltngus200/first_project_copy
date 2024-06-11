@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class TourScheduleGetRes {
     private long tourScheduleId;
-    private long tourScheduleDay;
+    private String tourScheduleDay;
     private String tourScheduleStart;
     private String tourScheduleEnd;
     private String title;

@@ -10,10 +10,10 @@ public class TourScheduleGetReq {
     @Schema(name = "tour_id")
     private long tourId;
     @Schema(name = "tour_schedule_day")
-    private long tourScheduleDay;
+    private String tourScheduleDay;
 
     @ConstructorProperties({"tour_id", "tour_schedule_day"})
-    public TourScheduleGetReq(long tourId, long tourScheduleDay) {
+    public TourScheduleGetReq(long tourId, String tourScheduleDay) {
         this.tourId = tourId;
         this.tourScheduleDay = tourScheduleDay;
     }

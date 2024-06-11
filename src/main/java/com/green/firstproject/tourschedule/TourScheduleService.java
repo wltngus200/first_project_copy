@@ -24,7 +24,7 @@ public class TourScheduleService {
         if(p.getTourScheduleStart() == null || p.getTourScheduleStart().isBlank()) {
             throw new RuntimeException("시작 시간은 필수값");
         }
-        if(p.getTourScheduleDay() <= 0) {
+        if(p.getTourScheduleDay().isBlank()) {
             throw new RuntimeException("1이상의 값만 가능");
         }
 
@@ -61,11 +61,11 @@ public class TourScheduleService {
         return result;
     }
 
-    public int updateScheduleDay(TourSchedulePatchReq p) {
+    public int updateScheduleDay(TourSchedulePutReq p) {
         if(p.getCost() < 0) {
             throw new RuntimeException("음수를 입력 할 수 없음");
         }
-        if(p.getTourScheduleDay() <= 0) {
+        if(p.getTourScheduleDay().isBlank()) {
             throw new RuntimeException("1이상의 값만 가능");
         }
 
