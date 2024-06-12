@@ -21,8 +21,8 @@ public class CheckListController {
 
     @PostMapping
     @Operation(summary = "여행물품 등록", description =
-            "<p> 변수명 : tourId(long)" +
-                    "<p> 변수명 : title(String)"
+            "<p><strong>tour_id </strong>: 투어PK(long)" +
+            "<p><strong>title</strong> : 투어타이틀(String)"
     )
     public ResultDto<Integer> postCheckList(@RequestBody PostCheckListReq p){
         log.info("p: {}", p);
@@ -40,7 +40,7 @@ public class CheckListController {
     @Operation(summary = "여행물품 수정",
             description =
                     "<p> 변수명 : checklist_id(long) </p>" +
-                            "<p> 변수명 : title(String) </p>"
+                    "<p> 변수명 : title(String) </p>"
     )
     public ResultDto<Integer> putCheckList(@RequestBody PutCheckListReq p){
         int result = service.putCheckList(p);
