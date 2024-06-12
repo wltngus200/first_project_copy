@@ -5,15 +5,18 @@ import com.green.firstproject.common.model.ResultDto;
 import com.green.firstproject.common.model.ResultError;
 import com.green.firstproject.common.model.ResultSuccess;
 import com.green.firstproject.user.model.*;
+import com.green.firstproject.user.userexception.UserEmailException;
+import com.green.firstproject.user.userexception.UserIdNotFoundException;
+import com.green.firstproject.user.userexception.UserPasswordException;
+import com.green.firstproject.user.userexception.UserValidNotSuccessException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -28,16 +31,29 @@ public class UserController {
                           "<strong> 변수명 : upw </strong> <p> 회원 비밀번호 ex)aa123 </p>" +
                           "<strong> 변수명 : nm </strong> <p> 회원 이름 ex)홍길동 </p>" +
                           "<strong> 변수명 : email </strong> <p> 회원 이메일 ex)abc1231@naver.com </p>")
-    @ApiResponse
+    @ApiResponse(
+            description =
+                    "<p> ResponseCode 응답 코드 </p> " +
+                    "<p>  1 : 정상 </p> " +
+                    "<p> -1 : 아이디가 중복 됨 </p> " +
+                    "<p> -2 :  아이디 유효성 검사 통과 실패</p> " +
+                    "<p> -3 :  설정한 비밀번호 재확인 필요</p> " +
+                    "<p> -4 :  비밀번호 유효성 검사 통과 실패</p> " +
+                    "<p> -5 :  이메일 유효성 검사 통과 실패 </p> " +
+                    "<p> -6 : 이메일 중복 검사 통과 실패 </p>"
+    )
 
     public Result signUpUser(@RequestBody SignUpReq p){
         log.info("p : {}", p);
         //유효성 검사
         try {
             service.validateUser(p);
-        } catch (RuntimeException e) {
-            log.info(e.getMessage());
-            return ResultError.builder().resultMsg(e.getMessage()).statusCode(0).build();
+        } catch (UserValidNotSuccessException e) {
+            return ResultError.builder().resultMsg(e.getMessage()).statusCode(-2).build();
+        } catch (UserPasswordException e) {
+            return ResultError.builder().resultMsg(e.getMessage()).statusCode(-4).build();
+        } catch (UserEmailException e) {
+            return ResultError.builder().resultMsg(e.getMessage()).statusCode(-5).build();
         }
         //검증 통과 DB IN
         int result = service.signUpUser(p);
@@ -45,7 +61,7 @@ public class UserController {
         log.info("DB IN p2 : {}",  p);
 
         return ResultSuccess.<Integer>builder()
-                .statusCode(HttpStatus.OK)
+                .statusCode(1)
                 .resultData(result)
                 .resultMsg("회원가입에 성공하였습니다.")
                 .build();
