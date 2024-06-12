@@ -5,10 +5,7 @@ import com.green.firstproject.common.model.ResultDto;
 import com.green.firstproject.common.model.ResultError;
 import com.green.firstproject.common.model.ResultSuccess;
 import com.green.firstproject.user.model.*;
-import com.green.firstproject.user.userexception.UserEmailException;
-import com.green.firstproject.user.userexception.UserErrorMessage;
-import com.green.firstproject.user.userexception.UserPasswordException;
-import com.green.firstproject.user.userexception.UserValidNotSuccessException;
+import com.green.firstproject.user.userexception.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -80,21 +77,29 @@ public class UserController {
     }
     @PostMapping("sign-in")
     @Operation(summary="유저 로그인",
-            description = "<strong> 변수명 : uid </strong> <p> 회원 아이디 ex)abc1231 </p>"+"\n"+
-                          "<strong> 변수명 : upw </strong> <p> 회원 비밀번호 ex)aa123 </p>" +"\n")
+            description = "<strong> 변수명 : uid </strong> <p> 회원 아이디 ex)abc1231 </p>"+
+                          "<strong> 변수명 : upw </strong> <p> 회원 비밀번호 ex)aa123 </p>")
     @ApiResponse(
             description =
                     "<p> ResponseCode 응답 코드 </p> " +
-                            "<p>  1 : 정상 </p> " +
-                            "<p> -1 : 아이디가 존재하지않음 </p> " +
-                            "<p> -2 : 비밀번호가 틀림</p> "
+                    "<p>  1 : 정상 </p> " +
+                    "<p> -1 : 아이디가 존재하지않음 </p> " +
+                    "<p> -2 : 비밀번호가 틀림</p> "
     )
-    public ResultDto<SignInRes> signInUser(@RequestBody SignInReq p){
+    public Result signInUser(@RequestBody SignInReq p){
+        SignInRes result = null;
+        try {
+            result = service.signInUser(p);
+        } catch (UserNotFoundException e) {
+            return ResultError.builder().statusCode(-1).resultMsg(e.getMessage()).build();
+        } catch (UserPasswordException e) {
+             return ResultError.builder().statusCode(-2).resultMsg(e.getMessage()).build();
+        }
 
-        SignInRes result = service.signInUser(p);
         log.info("{},{}",p,result);
-        return ResultDto.<SignInRes>builder()
-                .statusCode(HttpStatus.OK)
+
+        return ResultSuccess.<SignInRes>builder()
+                .statusCode(1)
                 .resultData(result)
                 .resultMsg("로그인에 성공하였습니다.")
                 .build();
@@ -129,7 +134,7 @@ public class UserController {
     @GetMapping
     @Operation(summary="마이 페이지",
             description = "<strong> 변수명 : uid </strong> <p> 회원 PK ex)17 </p>")
-    public ResultDto<UserEntity> getUserInfo(@RequestParam String uid){
+    public ResultDto<UserEntity> getUserInfo(@RequestParam(name = "uid") String uid){
         UserEntity user=service.getUserInfo(uid);
         return ResultDto.<UserEntity>builder()
                 .statusCode(HttpStatus.OK)

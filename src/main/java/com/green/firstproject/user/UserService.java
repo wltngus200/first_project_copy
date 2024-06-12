@@ -3,10 +3,7 @@ package com.green.firstproject.user;
 import com.green.firstproject.common.CustomFileUtils;
 import com.green.firstproject.user.check.Validator;
 import com.green.firstproject.user.model.*;
-import com.green.firstproject.user.userexception.UserEmailException;
-import com.green.firstproject.user.userexception.UserErrorMessage;
-import com.green.firstproject.user.userexception.UserPasswordException;
-import com.green.firstproject.user.userexception.UserValidNotSuccessException;
+import com.green.firstproject.user.userexception.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mindrot.jbcrypt.BCrypt;
@@ -53,9 +50,9 @@ public class UserService {
     public SignInRes signInUser(SignInReq p) {
         UserEntity user = mapper.signInUser(p);
         if (user == null) {
-            throw new RuntimeException("아이디가 틀렸습니다.");
+            throw new UserNotFoundException(UserErrorMessage.USER_NOT_FOUND_EXCEPTION);
         } else if (!BCrypt.checkpw(p.getUpw(), user.getUpw())) {
-            throw new RuntimeException("비밀번호가 틀렸습니다.");
+            throw new UserPasswordException(UserErrorMessage.USER_PASSWORD_CHECK_MESSAGE);
         }
         SignInRes res = SignInRes.builder()
                 .userId(user.getUserId())
@@ -112,5 +109,19 @@ public class UserService {
         } else {
             return -5;  // 중복에러발생
         }
+    }
+
+    public int searchUser(String uid){
+        UserEntity user = mapper.getUserInfo(uid);
+
+        int idCheck = 0;
+
+        if (user != null) {
+            idCheck = 0;
+        }  else {
+            idCheck = -1;
+        }
+
+        return idCheck;
     }
 }

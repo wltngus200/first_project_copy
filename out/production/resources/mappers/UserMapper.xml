@@ -54,5 +54,11 @@
         WHERE uid=#{uid}
     </select>
 
+    <!-- 이메일 조회 -->
+    <select id="getUserEmailInfo">
+        SELECT  email
+        FROM    user
+        WHERE   email = #{email}
+    </select>
 
 </mapper>
