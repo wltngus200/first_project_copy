@@ -129,7 +129,7 @@ public class UserController {
     @GetMapping
     @Operation(summary="마이 페이지",
             description = "<strong> 변수명 : uid </strong> <p> 회원 PK ex)17 </p>")
-    public ResultDto<UserEntity> getUserInfo(@RequestParam String uid){
+    public ResultDto<UserEntity> getUserInfo(@RequestParam(name = "uid") String uid){
         UserEntity user=service.getUserInfo(uid);
         return ResultDto.<UserEntity>builder()
                 .statusCode(HttpStatus.OK)

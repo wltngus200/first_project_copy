@@ -42,5 +42,5 @@ spring:
     username: odd_first_4
     password: cell
 file:
-  directory: /home/download
+  directory: /home/download/
 
