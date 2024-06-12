@@ -33,7 +33,7 @@ public class TourScheduleController {
 
         return ResultDto.<Long>builder()
                 .statusCode(HttpStatus.OK)
-                .resultMsg("")
+                .resultMsg("스케줄 등록 성공")
                 .resultData(result)
                 .build();
     }
@@ -48,7 +48,7 @@ public class TourScheduleController {
 
         return ResultDto.<Integer>builder()
                 .statusCode(HttpStatus.OK)
-                .resultMsg("")
+                .resultMsg("스케줄 삭제 성공")
                 .resultData(result)
                 .build();
     }
@@ -63,7 +63,7 @@ public class TourScheduleController {
 
         return ResultDto.<TourScheduleGetRes>builder()
                 .statusCode(HttpStatus.OK)
-                .resultMsg("")
+                .resultMsg("상세 조회 성공")
                 .resultData(result)
                 .build();
     }
@@ -78,7 +78,7 @@ public class TourScheduleController {
 
         return ResultDto.<List<TourScheduleGetListRes>>builder()
                 .statusCode(HttpStatus.OK)
-                .resultMsg("")
+                .resultMsg("리스트형태로 조회 성공")
                 .resultData(result)
                 .build();
     }
@@ -100,7 +100,7 @@ public class TourScheduleController {
 
         return ResultDto.<Integer>builder()
                 .statusCode(HttpStatus.OK)
-                .resultMsg("")
+                .resultMsg("수정 성공")
                 .resultData(result)
                 .build();
     }
