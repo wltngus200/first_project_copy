@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 @Setter
 @Builder
 public class ResultSuccess<T> implements Result {
-    private HttpStatus statusCode;
+    private Integer statusCode;
     private String resultMsg;
     private T resultData;
 }

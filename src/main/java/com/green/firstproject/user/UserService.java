@@ -3,14 +3,15 @@ package com.green.firstproject.user;
 import com.green.firstproject.common.CustomFileUtils;
 import com.green.firstproject.user.check.Validator;
 import com.green.firstproject.user.model.*;
+import com.green.firstproject.user.userexception.UserEmailException;
 import com.green.firstproject.user.userexception.UserErrorMessage;
+import com.green.firstproject.user.userexception.UserPasswordException;
+import com.green.firstproject.user.userexception.UserValidNotSuccessException;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 
@@ -76,7 +77,7 @@ public class UserService {
 
 
     public int deleteUserInfo(long userId) {
-        String shortPath=String.format("/user/%d", userId);
+        String shortPath = String.format("/user/%d", userId);
         utils.deleteFolder(shortPath);
         return mapper.deleteUserInfo(userId);
         //탈퇴가 진짜 다시 로그인 시켜볼 필요가 있나???
@@ -86,16 +87,15 @@ public class UserService {
         return mapper.getUserInfo(userId);
     }
 
-
     public void validateUser(SignUpReq p) {
-        //회원가입 유효성 검사
 
+        //회원가입 유효성 검사
         if (!Validator.isValidId(p.getUid())) {
-            throw new RuntimeException(UserErrorMessage.USER_ID_CHECK_MESSAGE);
+            throw new UserValidNotSuccessException(UserErrorMessage.USER_ID_CHECK_MESSAGE);
         } else if (!Validator.isValidPassword(p.getUpw())) {
-            throw new RuntimeException(UserErrorMessage.USER_PASSWORD_CHECK_MESSAGE);
+            throw new UserPasswordException(UserErrorMessage.USER_PASSWORD_CHECK_MESSAGE);
         } else if (!Validator.isValidEmail(p.getEmail())) {
-            throw new RuntimeException(UserErrorMessage.USER_EMAIL_CHECK_MESSAGE);
+            throw new UserEmailException(UserErrorMessage.USER_EMAIL_CHECK_MESSAGE);
         }
     }
 }
