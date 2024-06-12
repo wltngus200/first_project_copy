@@ -6,7 +6,8 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class ToggleCheckList {
+public class
+ToggleCheckList {
 
     private long checklistId;
 

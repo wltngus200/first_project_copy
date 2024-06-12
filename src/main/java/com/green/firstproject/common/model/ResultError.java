@@ -7,11 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-/**
- *
- *
- *
- * */
 public class ResultError implements Result {
     private int statusCode;
     private String resultMsg;

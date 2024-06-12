@@ -38,4 +38,7 @@ public class CheckListService {
         return mapper.toggleCheckList(p);
 
     }
+    public int deleteDayCheckList(int tourId){
+        return mapper.deleteDayCheckList(tourId);
+    }
 }

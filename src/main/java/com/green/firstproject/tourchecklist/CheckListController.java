@@ -3,6 +3,7 @@ package com.green.firstproject.tourchecklist;
 import com.green.firstproject.tourchecklist.model.*;
 import com.green.firstproject.common.model.ResultDto;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
@@ -20,8 +21,8 @@ public class CheckListController {
 
     @PostMapping
     @Operation(summary = "여행물품 등록", description =
-            "<p> 변수명 : tour_id(long)" +
-                    "<p> 변수명 : title(String)"
+            "<p><strong>tour_id </strong>: 투어PK(long)" +
+            "<p><strong>title</strong> : 투어타이틀(String)"
     )
     public ResultDto<Integer> postCheckList(@RequestBody PostCheckListReq p){
         log.info("p: {}", p);
@@ -38,7 +39,7 @@ public class CheckListController {
     @Operation(summary = "여행물품 수정",
             description =
                     "<p> 변수명 : checklist_id(long) </p>" +
-                            "<p> 변수명 : title(String) </p>"
+                    "<p> 변수명 : title(String) </p>"
     )
     public ResultDto<Integer> putCheckList(@RequestBody PutCheckListReq p){
         int result = service.putCheckList(p);
@@ -89,6 +90,17 @@ public class CheckListController {
                 .resultData(result)
                 .statusCode(HttpStatus.OK)
                 .resultMsg("")
+                .build();
+    }
+    @DeleteMapping("/day")
+    @Operation(summary = "전체삭제")
+    public ResultDto<Integer> deleteDayCheckList(@RequestParam("tour_id") int tourId){
+        int result = service.deleteDayCheckList(tourId);
+
+        return ResultDto.<Integer>builder()
+                .resultData(result)
+                .statusCode(HttpStatus.OK)
+                .resultMsg("물품을 삭제하였습니다.")
                 .build();
     }
 }
