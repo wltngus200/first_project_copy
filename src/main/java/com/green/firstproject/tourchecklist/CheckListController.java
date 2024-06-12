@@ -28,6 +28,7 @@ public class CheckListController {
         log.info("p: {}", p);
         int result = service.postCheckList(p);
 
+
         return ResultDto.<Integer>builder()
                 .resultData(result)
                 .statusCode(HttpStatus.OK)
