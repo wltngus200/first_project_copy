@@ -33,7 +33,7 @@
         when checked = 1 then 0
         when checked = 0 then 1
         END
-        WHERE checklist_id = #{checklistId};
+        WHERE checklist_id = #{checklistId}
     </update>
 
     <delete id="deleteDayCheckList">
