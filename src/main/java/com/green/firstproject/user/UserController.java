@@ -6,7 +6,6 @@ import com.green.firstproject.common.model.ResultError;
 import com.green.firstproject.common.model.ResultSuccess;
 import com.green.firstproject.user.model.*;
 import com.green.firstproject.user.userexception.UserEmailException;
-import com.green.firstproject.user.userexception.UserIdNotFoundException;
 import com.green.firstproject.user.userexception.UserPasswordException;
 import com.green.firstproject.user.userexception.UserValidNotSuccessException;
 import io.swagger.v3.oas.annotations.Operation;
