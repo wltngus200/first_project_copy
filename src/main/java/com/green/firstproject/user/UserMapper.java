@@ -12,6 +12,7 @@ public interface UserMapper {
 
     int updateUpw(ChangeUpwReq p);
     int deleteUserInfo(long userId);
-    UserEntity getUserInfo(long userId);
+    UserEntity getUserInfo(String uid);
 
+    String getUserEmailInfo(String email);
 }

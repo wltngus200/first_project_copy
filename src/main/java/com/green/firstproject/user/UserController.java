@@ -6,7 +6,7 @@ import com.green.firstproject.common.model.ResultError;
 import com.green.firstproject.common.model.ResultSuccess;
 import com.green.firstproject.user.model.*;
 import com.green.firstproject.user.userexception.UserEmailException;
-import com.green.firstproject.user.userexception.UserIdNotFoundException;
+import com.green.firstproject.user.userexception.UserErrorMessage;
 import com.green.firstproject.user.userexception.UserPasswordException;
 import com.green.firstproject.user.userexception.UserValidNotSuccessException;
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,13 +36,12 @@ public class UserController {
                     "<p> ResponseCode 응답 코드 </p> " +
                     "<p>  1 : 정상 </p> " +
                     "<p> -1 : 아이디가 중복 됨 </p> " +
-                    "<p> -2 :  아이디 유효성 검사 통과 실패</p> " +
-                    "<p> -3 :  설정한 비밀번호 재확인 필요</p> " +
-                    "<p> -4 :  비밀번호 유효성 검사 통과 실패</p> " +
-                    "<p> -5 :  이메일 유효성 검사 통과 실패 </p> " +
-                    "<p> -6 : 이메일 중복 검사 통과 실패 </p>"
+                    "<p> -2 : 아이디 유효성 검사 통과 실패</p> " +
+                    "<p> -3 : 비밀번호 유효성 검사 통과 실패</p> " +
+                    "<p> -4 : 이메일 유효성 검사 통과 실패 </p> " +
+                    "<p> -5 : 이메일 조회 쿼리 실패 </p>" +
+                    "<p> -6 : 이메일 중복 </p>"
     )
-
     public Result signUpUser(@RequestBody SignUpReq p){
         log.info("p : {}", p);
         //유효성 검사
@@ -51,10 +50,22 @@ public class UserController {
         } catch (UserValidNotSuccessException e) {
             return ResultError.builder().resultMsg(e.getMessage()).statusCode(-2).build();
         } catch (UserPasswordException e) {
-            return ResultError.builder().resultMsg(e.getMessage()).statusCode(-4).build();
+            return ResultError.builder().resultMsg(e.getMessage()).statusCode(-3).build();
         } catch (UserEmailException e) {
+            return ResultError.builder().resultMsg(e.getMessage()).statusCode(-4).build();
+        }
+        int checkDuplicate = 0;
+        // email SQL 에러
+        try {
+            checkDuplicate = service.checkDuplicateEmail(p);
+        } catch (Exception e) {
             return ResultError.builder().resultMsg(e.getMessage()).statusCode(-5).build();
         }
+        //email 중복검사
+        if (checkDuplicate != 1) {
+            return ResultError.builder().resultMsg(UserErrorMessage.USER_EMAIL_DUPLICATED_MESSAGE).statusCode(-6).build();
+        }
+
         //검증 통과 DB IN
         int result = service.signUpUser(p);
 
@@ -71,8 +82,16 @@ public class UserController {
     @Operation(summary="유저 로그인",
             description = "<strong> 변수명 : uid </strong> <p> 회원 아이디 ex)abc1231 </p>"+"\n"+
                           "<strong> 변수명 : upw </strong> <p> 회원 비밀번호 ex)aa123 </p>" +"\n")
+    @ApiResponse(
+            description =
+                    "<p> ResponseCode 응답 코드 </p> " +
+                            "<p>  1 : 정상 </p> " +
+                            "<p> -1 : 아이디가 존재하지않음 </p> " +
+                            "<p> -2 : 비밀번호가 틀림</p> "
+    )
     public ResultDto<SignInRes> signInUser(@RequestBody SignInReq p){
-        SignInRes result=service.signInUser(p);
+
+        SignInRes result = service.signInUser(p);
         log.info("{},{}",p,result);
         return ResultDto.<SignInRes>builder()
                 .statusCode(HttpStatus.OK)
@@ -109,9 +128,9 @@ public class UserController {
 
     @GetMapping
     @Operation(summary="마이 페이지",
-            description = "<strong> 변수명 : user_id </strong> <p> 회원 PK ex)17 </p>")
-    public ResultDto<UserEntity> getUserInfo(@RequestParam(name="user_id") long userId){
-        UserEntity user=service.getUserInfo(userId);
+            description = "<strong> 변수명 : uid </strong> <p> 회원 PK ex)17 </p>")
+    public ResultDto<UserEntity> getUserInfo(@RequestParam String uid){
+        UserEntity user=service.getUserInfo(uid);
         return ResultDto.<UserEntity>builder()
                 .statusCode(HttpStatus.OK)
                 .resultData(user)

@@ -83,12 +83,11 @@ public class UserService {
         //탈퇴가 진짜 다시 로그인 시켜볼 필요가 있나???
     }
 
-    public UserEntity getUserInfo(long userId) {
-        return mapper.getUserInfo(userId);
+    public UserEntity getUserInfo(String uid) {
+        return mapper.getUserInfo(uid);
     }
 
     public void validateUser(SignUpReq p) {
-
         //회원가입 유효성 검사
         if (!Validator.isValidId(p.getUid())) {
             throw new UserValidNotSuccessException(UserErrorMessage.USER_ID_CHECK_MESSAGE);
@@ -96,6 +95,22 @@ public class UserService {
             throw new UserPasswordException(UserErrorMessage.USER_PASSWORD_CHECK_MESSAGE);
         } else if (!Validator.isValidEmail(p.getEmail())) {
             throw new UserEmailException(UserErrorMessage.USER_EMAIL_CHECK_MESSAGE);
+        }
+    }
+
+    public int checkDuplicateEmail(SignUpReq p) {
+
+        String userEmailInfo = null;
+        try {
+            userEmailInfo = mapper.getUserEmailInfo(p.getEmail());
+        } catch (Exception e) {
+            throw new RuntimeException(UserErrorMessage.USER_EMAIL_SQLERROR_MESSAGE);
+        }
+
+        if (userEmailInfo == null) {
+            return 1;   // 정상적 수행
+        } else {
+            return -5;  // 중복에러발생
         }
     }
 }
