@@ -13,3 +13,18 @@
 [2024-06-12 16:39:51 INFO  main] [org.apache.coyote.http11.Http11NioProtocol] Starting ProtocolHandler ["http-nio-8080"] 
 [2024-06-12 16:39:51 INFO  main] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] Tomcat started on port 8080 (http) with context path '' 
 [2024-06-12 16:39:51 INFO  main] [com.green.firstproject.FirstProjectApplication] Started FirstProjectApplication in 2.667 seconds (process running for 3.03) 
+[2024-06-12 17:41:59 INFO  main] [com.green.firstproject.FirstProjectApplication] Starting FirstProjectApplication v0.0.1-SNAPSHOT using Java 17.0.10 with PID 12476 (C:\Users\Administrator\Downloads\FirstProject\build\libs\FirstProject-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Downloads\FirstProject\build\libs) 
+[2024-06-12 17:41:59 INFO  main] [com.green.firstproject.FirstProjectApplication] The following 1 profile is active: "=prod" 
+[2024-06-12 17:42:00 WARN  main] [org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [annotationActionEndpointMapping] is declared through a non-static factory method on that class; consider declaring it as static instead. 
+[2024-06-12 17:42:00 INFO  main] [org.springframework.ws.soap.addressing.server.AnnotationActionEndpointMapping] Supporting [WS-Addressing August 2004, WS-Addressing 1.0] 
+[2024-06-12 17:42:00 INFO  main] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] Tomcat initialized with port 8080 (http) 
+[2024-06-12 17:42:00 INFO  main] [org.apache.coyote.http11.Http11NioProtocol] Initializing ProtocolHandler ["http-nio-8080"] 
+[2024-06-12 17:42:00 INFO  main] [org.apache.catalina.core.StandardService] Starting service [Tomcat] 
+[2024-06-12 17:42:00 INFO  main] [org.apache.catalina.core.StandardEngine] Starting Servlet engine: [Apache Tomcat/10.1.24] 
+[2024-06-12 17:42:00 INFO  main] [org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] Initializing Spring embedded WebApplicationContext 
+[2024-06-12 17:42:00 INFO  main] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] Root WebApplicationContext: initialization completed in 1274 ms 
+[2024-06-12 17:42:01 INFO  main] [org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping] Adding welcome page: class path resource [static/index.html] 
+[2024-06-12 17:42:01 INFO  main] [org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver] Exposing 1 endpoint(s) beneath base path '/actuator' 
+[2024-06-12 17:42:01 INFO  main] [org.apache.coyote.http11.Http11NioProtocol] Starting ProtocolHandler ["http-nio-8080"] 
+[2024-06-12 17:42:01 INFO  main] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] Tomcat started on port 8080 (http) with context path '' 
+[2024-06-12 17:42:01 INFO  main] [com.green.firstproject.FirstProjectApplication] Started FirstProjectApplication in 2.785 seconds (process running for 3.158) 
