@@ -29,6 +29,7 @@ public class TourScheduleController {
                     "<p><strong> contents</strong> : 내용(String) </p>" +
                     "<p><strong> cost</strong> : 예산(long) </p>")
     public ResultDto<Long> postSchedule(@RequestBody TourSchedulePostReq p) {
+        log.info("p : {}", p);
         long result = service.postSchedule(p);
 
         return ResultDto.<Long>builder()

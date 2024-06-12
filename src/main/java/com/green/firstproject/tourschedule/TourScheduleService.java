@@ -28,11 +28,20 @@ public class TourScheduleService {
             throw new RuntimeException("날짜 다시 선택");
         }
 
+        int check = mapper.getTourScheduleCheck(p.getTourScheduleDay(), p.getTourScheduleStart(), p.getTitle());
+        log.info("check : {}", check);
+        if(check > 0) {
+            throw new RuntimeException("중복된 일정");
+        }
+
+
         int result = mapper.postSchedule(p);
         if(result == 0L) {
             throw new RuntimeException("등록에 실패 했습니다");
         }
         return p.getTourScheduleId();
+
+
     }
 
     public int deleteSchedule(TourScheduleDeleteReq p) {
