@@ -3,7 +3,6 @@ package com.green.firstproject.tourchecklist;
 import com.green.firstproject.tourchecklist.model.*;
 import com.green.firstproject.common.model.ResultDto;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
@@ -84,7 +83,7 @@ public class CheckListController {
 
     @PatchMapping
     @Operation(summary = "여행물품 체크")
-    public ResultDto<Integer> toggleCheckList(@RequestBody ToggleCheckList p){
+    public ResultDto<Integer> toggleCheckList(@ModelAttribute @ParameterObject ToggleCheckListReq p){
         int result = service.toggleCheckList(p);
 
         return ResultDto.<Integer>builder()
