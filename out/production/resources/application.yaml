@@ -33,4 +33,14 @@ file:
   directory: D:\2024-01\download\firstproject\
 
 ---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:log4jdbc:mariadb://192.168.0.144:3306/db_odd_first_4
+    username: odd_first_4
+    password: cell
+file:
+  directory: /home/download/
 

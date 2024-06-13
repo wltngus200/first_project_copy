@@ -37,7 +37,7 @@
         SELECT user_id AS userId, uid, upw, nm,
                 created_at AS createdAt, updated_at AS updatedAt, email
         FROM user
-        WHERE user_id=#{userId}
+        WHERE uid=#{uid}
     </select>
 
     <select id="searchUser">
@@ -54,5 +54,11 @@
         WHERE uid=#{uid}
     </select>
 
+    <!-- 이메일 조회 -->
+    <select id="getUserEmailInfo">
+        SELECT  email
+        FROM    user
+        WHERE   email = #{email}
+    </select>
 
 </mapper>
