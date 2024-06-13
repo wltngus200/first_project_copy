@@ -11,7 +11,7 @@ public interface CheckListMapper {
     int putCheckList(PutCheckListReq p);
     int deleteCheckList(int p);
     List<GetCheckListRes> getCheckList(GetCheckListReq p);
-    int toggleCheckList(ToggleCheckList p);
+    int toggleCheckList(ToggleCheckListReq p);
     int deleteDayCheckList(int p);
 
 
