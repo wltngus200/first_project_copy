@@ -29,6 +29,7 @@ public class TourScheduleService {
         }
 
         int result = mapper.postSchedule(p);
+
         if(result == 0L) {
             throw new RuntimeException("등록에 실패 했습니다");
         }

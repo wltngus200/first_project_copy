@@ -7,6 +7,4 @@ import lombok.Setter;
 @Setter
 public class DeleteInfoReq { //user PK
     private long userId;
-    //private String uid;
-    //private String upw;
 }
