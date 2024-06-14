@@ -61,7 +61,7 @@ public class TourScheduleService {
         return result;
     }
 
-    public int updateScheduleDay(TourSchedulePutReq p) {
+    public int updateScheduleDay(long tourScheduleId, TourSchedulePutReq p) {
         if(p.getCost() < 0) {
             throw new RuntimeException("음수를 입력 할 수 없음");
         }
@@ -74,7 +74,7 @@ public class TourScheduleService {
         if(p.getTourScheduleStart() == null || p.getTourScheduleStart().isBlank()) {
             throw new RuntimeException("시작 시간은 필수값");
         }
-
+        p.setTourScheduleId(tourScheduleId);
         int result = mapper.updateScheduleDay(p);
         if(result == 0) {
             throw new RuntimeException("수정 실패");

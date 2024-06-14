@@ -92,9 +92,9 @@ public class TourScheduleController {
                     "<p><strong> title</strong> : 제목(String) </p>" +
                     "<p><strong> contents</strong> : 내용(String) </p>" +
                     "<p><strong> cost</strong> : 예산(long) </p>" +
-                    "<p><strong> tourScheduleId</strong> : 여행 스케줄 PK </p>")
-    public ResultDto<Integer> updateScheduleDay(@RequestBody TourSchedulePutReq p) {
-        int result = service.updateScheduleDay(p);
+                    "<p><strong> tour_schedul_id</strong> : 여행 스케줄 PK </p>")
+    public ResultDto<Integer> updateScheduleDay(@RequestParam(name = "tour_schedule_id") long tourScheduleId, @RequestBody TourSchedulePutReq p) {
+        int result = service.updateScheduleDay(tourScheduleId, p);
         log.info("result : {}", result);
         log.info("p : {}", p);
 
