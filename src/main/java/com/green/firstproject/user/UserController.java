@@ -36,7 +36,7 @@ public class UserController {
                     "<p> -2 : 아이디 유효성 검사 통과 실패</p> " +
                     "<p> -3 : 비밀번호 유효성 검사 통과 실패</p> " +
                     "<p> -4 : 이메일 유효성 검사 통과 실패 </p> " +
-                    "<p> -5 : 이메일 조회 쿼리 실패 </p>" +
+                    "<p> -5 : 이메일 조회 SQL 실패 </p>" +
                     "<p> -6 : 이메일 중복 </p>"
     )
     public Result signUpUser(@RequestBody SignUpReq p){
