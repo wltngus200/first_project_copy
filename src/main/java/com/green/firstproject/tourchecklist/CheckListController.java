@@ -20,7 +20,7 @@ public class CheckListController {
 
     @PostMapping
     @Operation(summary = "여행물품 등록", description =
-            "<p><strong>tour_id </strong>: 투어PK(long)" +
+            "<p><strong>tour_id </strong>: 투어PK (long)" +
             "<p><strong>title</strong> : 투어타이틀(String)"
     )
     public ResultDto<Integer> postCheckList(@RequestBody PostCheckListReq p){
@@ -57,6 +57,7 @@ public class CheckListController {
                     "<p> 변수명 : checklist_id(long) </p>"
     )
     public ResultDto<Integer> deleteCheckList(@RequestParam("checklist_id") int checklistId){
+
         int result = service.deleteCheckList(checklistId);
 
         return ResultDto.<Integer>builder()

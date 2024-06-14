@@ -15,6 +15,7 @@ public class TourScheduleService {
     private final TourScheduleMapper mapper;
 
     public long postSchedule(TourSchedulePostReq p) {
+
         if(p.getCost() < 0) {
             throw new RuntimeException("음수를 입력 할 수 없음");
         }
@@ -27,14 +28,15 @@ public class TourScheduleService {
         if(p.getTourScheduleDay() == null || p.getTourScheduleDay().isBlank()) {
             throw new RuntimeException("날짜 다시 선택");
         }
-
+        //중복 체크
         int check = mapper.getTourScheduleCheck(p.getTourScheduleDay(), p.getTourScheduleStart(), p.getTitle());
+
         log.info("check : {}", check);
+
         if(check > 0) {
             throw new RuntimeException("중복된 일정");
         }
-
-
+        //  insert 스케줄
         int result = mapper.postSchedule(p);
 
         if(result == 0L) {
