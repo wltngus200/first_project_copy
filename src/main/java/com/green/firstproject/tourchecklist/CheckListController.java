@@ -3,7 +3,6 @@ package com.green.firstproject.tourchecklist;
 import com.green.firstproject.tourchecklist.model.*;
 import com.green.firstproject.common.model.ResultDto;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.annotations.ParameterObject;
@@ -32,7 +31,7 @@ public class CheckListController {
         return ResultDto.<Integer>builder()
                 .resultData(result)
                 .statusCode(HttpStatus.OK)
-                .resultMsg("check list에 등록되었습니다.")
+                .resultMsg("물품이 등록되었습니다.")
                 .build();
     }
 
@@ -48,7 +47,7 @@ public class CheckListController {
         return ResultDto.<Integer>builder()
                 .resultData(result)
                 .statusCode(HttpStatus.OK)
-                .resultMsg("check list를 수정하였습니다.")
+                .resultMsg("물품을 수정하였습니다.")
                 .build();
     }
 
@@ -63,7 +62,7 @@ public class CheckListController {
         return ResultDto.<Integer>builder()
                 .resultData(result)
                 .statusCode(HttpStatus.OK)
-                .resultMsg("check list를 삭제하였습니다.")
+                .resultMsg("물품을 삭제하였습니다.")
                 .build();
     }
 
@@ -84,7 +83,7 @@ public class CheckListController {
 
     @PatchMapping
     @Operation(summary = "여행물품 체크")
-    public ResultDto<Integer> toggleCheckList(@RequestBody ToggleCheckList p){
+    public ResultDto<Integer> toggleCheckList(@ParameterObject @ModelAttribute ToggleCheckListReq p){
         int result = service.toggleCheckList(p);
 
         return ResultDto.<Integer>builder()

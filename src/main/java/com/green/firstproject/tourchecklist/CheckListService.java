@@ -34,7 +34,7 @@ public class CheckListService {
         return list;
     }
 
-    public int toggleCheckList(ToggleCheckList p){
+    public int toggleCheckList(ToggleCheckListReq p){
         return mapper.toggleCheckList(p);
 
     }
