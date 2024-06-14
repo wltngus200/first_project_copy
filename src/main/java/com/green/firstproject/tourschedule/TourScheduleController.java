@@ -43,25 +43,25 @@ public class TourScheduleController {
                 .build();
         } catch (ScheduleRequiredException e) {
             return ResultDto.<Long>builder()
-                    .statusCode(HttpStatus.OK)
+                    .statusCode(HttpStatus.BAD_REQUEST)
                     .resultMsg("예산에 음수를 입력하셨거나 필수값(제목, 날짜, 시각)을 입력하지 않으셨습니다")
                     .resultData(0L)
                     .build();
         } catch (DuplicateScheduleException e) {
             return ResultDto.<Long>builder()
-                    .statusCode(HttpStatus.OK)
+                    .statusCode(HttpStatus.BAD_REQUEST)
                     .resultMsg("중복된 일정입니다")
                     .resultData(-1L)
                     .build();
         } catch (ScheduleSaveFailedException e) {
             return ResultDto.<Long>builder()
-                    .statusCode(HttpStatus.OK)
+                    .statusCode(HttpStatus.BAD_REQUEST)
                     .resultMsg("등록 실패")
                     .resultData(-2L)
                     .build();
         } catch (Exception e) {
             return ResultDto.<Long>builder()
-                    .statusCode(HttpStatus.OK)
+                    .statusCode(HttpStatus.BAD_REQUEST)
                     .resultMsg("에러 발생")
                     .resultData(-3L)
                     .build();
@@ -85,7 +85,7 @@ public class TourScheduleController {
                 .build();
         } catch (RuntimeException e) {
             return ResultDto.<Integer>builder()
-                    .statusCode(HttpStatus.OK)
+                    .statusCode(HttpStatus.BAD_REQUEST)
                     .resultMsg("스케줄 삭제 실패")
                     .resultData(0)
                     .build();
@@ -96,7 +96,7 @@ public class TourScheduleController {
     @Operation(summary = "일정 스케줄 상세페이지", description =
             "<strong > 일정 스케줄 등록 </strong> <p></p>" +
             "<p><strong> tourScheduleId</strong> : 여행 스케줄 PK (long) </p>")
-    public ResultDto<TourScheduleGetRes> getTourSchedule(@PathVariable long tourScheduleId) {
+    public ResultDto<TourScheduleGetRes> getTourSchedule(@PathVariable("tourScheduleId") long tourScheduleId) {
         try {
             TourScheduleGetRes result = service.getTourSchedule(tourScheduleId);
 
@@ -109,7 +109,7 @@ public class TourScheduleController {
                 .build();
         } catch (RuntimeException e) {
             return ResultDto.<TourScheduleGetRes>builder()
-                    .statusCode(HttpStatus.OK)
+                    .statusCode(HttpStatus.BAD_REQUEST)
                     .resultMsg("상세 조회 실패")
                     .resultData(null)
                     .build();
@@ -133,7 +133,7 @@ public class TourScheduleController {
                 .build();
         } catch (RuntimeException e) {
             return ResultDto.<List<TourScheduleGetListRes>>builder()
-                    .statusCode(HttpStatus.OK)
+                    .statusCode(HttpStatus.BAD_REQUEST)
                     .resultMsg("리스트형태로 조회 실패")
                     .resultData(null)
                     .build();
@@ -164,19 +164,19 @@ public class TourScheduleController {
                 .build();
         } catch (ScheduleRequiredException e) {
             return ResultDto.<Integer>builder()
-                    .statusCode(HttpStatus.OK)
+                    .statusCode(HttpStatus.BAD_REQUEST)
                     .resultMsg("예산에 음수를 입력하셨거나 필수값(제목, 날짜, 시각)을 입력하지 않으셨습니다")
                     .resultData(-1)
                     .build();
         } catch (ScheduleSaveFailedException e) {
             return ResultDto.<Integer>builder()
-                    .statusCode(HttpStatus.OK)
+                    .statusCode(HttpStatus.BAD_REQUEST)
                     .resultMsg("수정 실패")
                     .resultData(0)
                     .build();
         } catch (Exception e) {
             return ResultDto.<Integer>builder()
-                    .statusCode(HttpStatus.OK)
+                    .statusCode(HttpStatus.BAD_REQUEST)
                     .resultMsg("에러 발생")
                     .resultData(-2)
                     .build();

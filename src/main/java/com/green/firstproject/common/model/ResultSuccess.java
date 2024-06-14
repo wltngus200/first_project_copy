@@ -11,4 +11,5 @@ public class ResultSuccess<T> implements Result {
     private Integer statusCode;
     private String resultMsg;
     private T resultData;
+    private HttpStatus status;
 }
