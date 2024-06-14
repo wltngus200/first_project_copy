@@ -20,7 +20,7 @@ public class CheckListController {
 
     @PostMapping
     @Operation(summary = "여행물품 등록", description =
-            "<p><strong>tour_id </strong>: 투어PK (long)" +
+            "<p><strong>tour_id </strong>: 투어PK(long)" +
             "<p><strong>title</strong> : 투어타이틀(String)"
     )
     public ResultDto<Integer> postCheckList(@RequestBody PostCheckListReq p){
@@ -31,7 +31,7 @@ public class CheckListController {
         return ResultDto.<Integer>builder()
                 .resultData(result)
                 .statusCode(HttpStatus.OK)
-                .resultMsg("check list에 등록되었습니다.")
+                .resultMsg("물품이 등록되었습니다.")
                 .build();
     }
 
@@ -47,7 +47,7 @@ public class CheckListController {
         return ResultDto.<Integer>builder()
                 .resultData(result)
                 .statusCode(HttpStatus.OK)
-                .resultMsg("check list를 수정하였습니다.")
+                .resultMsg("물품을 수정하였습니다.")
                 .build();
     }
 
@@ -57,13 +57,12 @@ public class CheckListController {
                     "<p> 변수명 : checklist_id(long) </p>"
     )
     public ResultDto<Integer> deleteCheckList(@RequestParam("checklist_id") int checklistId){
-
         int result = service.deleteCheckList(checklistId);
 
         return ResultDto.<Integer>builder()
                 .resultData(result)
                 .statusCode(HttpStatus.OK)
-                .resultMsg("check list를 삭제하였습니다.")
+                .resultMsg("물품을 삭제하였습니다.")
                 .build();
     }
 
@@ -84,7 +83,7 @@ public class CheckListController {
 
     @PatchMapping
     @Operation(summary = "여행물품 체크")
-    public ResultDto<Integer> toggleCheckList(@ModelAttribute @ParameterObject ToggleCheckListReq p){
+    public ResultDto<Integer> toggleCheckList(@ParameterObject @ModelAttribute ToggleCheckListReq p){
         int result = service.toggleCheckList(p);
 
         return ResultDto.<Integer>builder()

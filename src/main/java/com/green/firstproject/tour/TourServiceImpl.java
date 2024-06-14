@@ -48,7 +48,7 @@ public class TourServiceImpl implements TourService{
     }
 
     @Override
-    public int putTour(TourPutReq p) {
+    public int putTour(long tourId, TourPutReq p) {
         if(p.getTitle() == null || p.getTitle().isBlank()) {
             throw new RuntimeException("제목이 비어있거나 입력되지 않음");
         }
@@ -65,9 +65,9 @@ public class TourServiceImpl implements TourService{
             throw new RuntimeException("예산에 음수 값을 입력할 수 없음");
         }
         if(p.getTourColor() == null || p.getTourColor().isBlank()) {
-
-            throw new RuntimeException("색상 코드가 비어있거나 입력되지 않음");
+            p.setTourColor("#000000");
         }
+        p.setTourId(tourId);
         return mapper.putTour(p);
     }
 
