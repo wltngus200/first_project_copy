@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.firstproject.main.MainMapper">
+    <select id="getMainTour">
+        SELECT tour_id AS tourId, title, tour_location AS tourLocation
+        , tour_startday AS tourStartDay, tour_finishday AS tourFinishDay
+        , tour_Budget AS tourBudget, created_at AS createdAt, updated_at AS updatedAt
+        FROM tour
+        WHERE user_id = #{signedUserId}
+        ORDER BY tour_startday, tour_id
+        LIMIT 1
+    </select>
+    <select id="getMainChecklist">
+        SELECT checklist_id AS checklistId, title, checked
+        FROM tour_checklist
+        WHERE tour_id = #{tourId}
+    </select>
+</mapper>

@@ -2,9 +2,6 @@ package com.green.firstproject.tourschedule;
 
 import com.green.firstproject.common.model.ResultDto;
 import com.green.firstproject.tourschedule.model.*;
-import com.green.firstproject.tourschedule.scheduleexception.DuplicateScheduleException;
-import com.green.firstproject.tourschedule.scheduleexception.ScheduleRequiredException;
-import com.green.firstproject.tourschedule.scheduleexception.ScheduleSaveFailedException;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,41 +29,13 @@ public class TourScheduleController {
                     "<p><strong> contents</strong> : 내용(String) </p>" +
                     "<p><strong> cost</strong> : 예산(long) </p>")
     public ResultDto<Long> postSchedule(@RequestBody TourSchedulePostReq p) {
-        log.info("p : {}", p);
-        try {
-            long result = service.postSchedule(p);
-
+        long result = service.postSchedule(p);
 
         return ResultDto.<Long>builder()
                 .statusCode(HttpStatus.OK)
                 .resultMsg("스케줄 등록 성공")
                 .resultData(result)
                 .build();
-        } catch (ScheduleRequiredException e) {
-            return ResultDto.<Long>builder()
-                    .statusCode(HttpStatus.OK)
-                    .resultMsg("예산을 음수로 입력 하셨거나 필수값(제목, 날짜, 시각)을 입력하지 않으셨습니다")
-                    .resultData(-1L)
-                    .build();
-        } catch (DuplicateScheduleException e) {
-            return ResultDto.<Long>builder()
-                    .statusCode(HttpStatus.OK)
-                    .resultMsg("중복된 일정입니다")
-                    .resultData(0L)
-                    .build();
-        } catch (ScheduleSaveFailedException e) {
-            return ResultDto.<Long>builder()
-                    .statusCode(HttpStatus.OK)
-                    .resultMsg("등록 실패")
-                    .resultData(-2L)
-                    .build();
-        } catch (Exception e) {
-            return ResultDto.<Long>builder()
-                    .statusCode(HttpStatus.OK)
-                    .resultMsg("에러 발생")
-                    .resultData(-3L)
-                    .build();
-        }
     }
 
     @DeleteMapping
@@ -75,22 +44,13 @@ public class TourScheduleController {
             "<p><strong> tourId</strong> : 여행 PK (long) </p>" +
             "<p><strong> tourScheduleId</strong> : 여행 스케줄 PK (long) </p>")
     public ResultDto<Integer> deleteSchedule(@ParameterObject @ModelAttribute TourScheduleDeleteReq p) {
-        try {
-            int result = service.deleteSchedule(p);
-
+        int result = service.deleteSchedule(p);
 
         return ResultDto.<Integer>builder()
                 .statusCode(HttpStatus.OK)
                 .resultMsg("스케줄 삭제 성공")
                 .resultData(result)
                 .build();
-        } catch (RuntimeException e) {
-            return ResultDto.<Integer>builder()
-                    .statusCode(HttpStatus.OK)
-                    .resultMsg("삭제 실패")
-                    .resultData(0)
-                    .build();
-        }
     }
 
     @GetMapping("{tourScheduleId}")
@@ -98,9 +58,7 @@ public class TourScheduleController {
             "<strong > 일정 스케줄 등록 </strong> <p></p>" +
             "<p><strong> tourScheduleId</strong> : 여행 스케줄 PK (long) </p>")
     public ResultDto<TourScheduleGetRes> getTourSchedule(@PathVariable long tourScheduleId) {
-        try {
-            TourScheduleGetRes result = service.getTourSchedule(tourScheduleId);
-
+        TourScheduleGetRes result = service.getTourSchedule(tourScheduleId);
 
 
         return ResultDto.<TourScheduleGetRes>builder()
@@ -108,13 +66,6 @@ public class TourScheduleController {
                 .resultMsg("상세 조회 성공")
                 .resultData(result)
                 .build();
-        } catch (RuntimeException e) {
-            return ResultDto.<TourScheduleGetRes>builder()
-                    .statusCode(HttpStatus.OK)
-                    .resultMsg("상세 조회 실패")
-                    .resultData(null)
-                    .build();
-        }
     }
 
     @GetMapping("tourScheduleList")
@@ -123,22 +74,13 @@ public class TourScheduleController {
             "<p><strong> tourId</strong> : 여행 PK (long) </p>" +
             "<p><strong> tourScheduleDay</strong> : 여행 일자 (String) </p>")
     public ResultDto<List<TourScheduleGetListRes>> getTourScheduleList(@ParameterObject @ModelAttribute TourScheduleGetReq p) {
-        try {
-            List<TourScheduleGetListRes> result = service.getTourScheduleList(p);
-
+        List<TourScheduleGetListRes> result = service.getTourScheduleList(p);
 
         return ResultDto.<List<TourScheduleGetListRes>>builder()
                 .statusCode(HttpStatus.OK)
                 .resultMsg("리스트형태로 조회 성공")
                 .resultData(result)
                 .build();
-        } catch (RuntimeException e) {
-            return ResultDto.<List<TourScheduleGetListRes>>builder()
-                    .statusCode(HttpStatus.OK)
-                    .resultMsg("리스트형태로 조회 실패")
-                    .resultData(null)
-                    .build();
-        }
     }
 
     @PutMapping
@@ -150,36 +92,16 @@ public class TourScheduleController {
                     "<p><strong> title</strong> : 제목(String) </p>" +
                     "<p><strong> contents</strong> : 내용(String) </p>" +
                     "<p><strong> cost</strong> : 예산(long) </p>" +
-                    "<p><strong> tourScheduleId</strong> : 여행 스케줄 PK </p>")
-    public ResultDto<Integer> updateScheduleDay(@RequestBody TourSchedulePutReq p) {
-        try {
-            int result = service.updateScheduleDay(p);
-
-
+                    "<p><strong> tour_schedul_id</strong> : 여행 스케줄 PK </p>")
+    public ResultDto<Integer> updateScheduleDay(@RequestParam(name = "tour_schedule_id") long tourScheduleId, @RequestBody TourSchedulePutReq p) {
+        int result = service.updateScheduleDay(tourScheduleId, p);
+        log.info("result : {}", result);
+        log.info("p : {}", p);
 
         return ResultDto.<Integer>builder()
                 .statusCode(HttpStatus.OK)
                 .resultMsg("수정 성공")
                 .resultData(result)
                 .build();
-        } catch (ScheduleRequiredException e) {
-            return ResultDto.<Integer>builder()
-                    .statusCode(HttpStatus.OK)
-                    .resultMsg("예산을 음수로 입력하셨거나 필수값(제목, 날짜, 시각)을 입력하지 않으셨습니다")
-                    .resultData(0)
-                    .build();
-        } catch (ScheduleSaveFailedException e) {
-            return ResultDto.<Integer>builder()
-                    .statusCode(HttpStatus.OK)
-                    .resultMsg("수정 실패")
-                    .resultData(-1)
-                    .build();
-        } catch (Exception e) {
-            return ResultDto.<Integer>builder()
-                    .statusCode(HttpStatus.OK)
-                    .resultMsg("에러 발생")
-                    .resultData(-2)
-                    .build();
-        }
     }
 }
