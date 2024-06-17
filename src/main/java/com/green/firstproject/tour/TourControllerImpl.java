@@ -22,7 +22,7 @@ public class TourControllerImpl {
     @Operation(summary = "여행계획 리스트",
             description =
             "<strong >로그인한 유저의 pk를 받아 해당 유저의 여행계획 출력</strong> <p></p>" +
-            "<p><strong>tourId</strong> : 여행 PK(long)</p>" +
+            "<p><strong>tour_id</strong> : 여행 PK(long)</p>" +
             "<p><strong>title</strong> : 여행 제목(String)</p>" +
             "<p><strong>tourLocation</strong> : 여행 위치(String)</p>" +
             "<p><strong>tourStartDay</strong> : 여행 시작일(String)</p>" +
@@ -86,14 +86,14 @@ public class TourControllerImpl {
     }
     @PutMapping
     @Operation(summary = "여행 계획 수정", description = "<strong >정보를 입력받아 여행 계획 수정</strong> <p></p>" +
-            "<p><strong>tourId</strong> : 여행 PK(long)</p>" +
+            "<p><strong>tour_id</strong> : 여행 PK(long)</p>" +
             "<p><strong>title</strong> : 여행 제목(String)</p>" +
             "<p><strong>tourLocation</strong> : 여행 위치(String)</p>" +
             "<p><strong>tourStartDay</strong> : 여행 시작일(String)</p>" +
             "<p><strong>tourFinishDay</strong> : 여행 종료일(String)</p>" +
             "<p><strong>tourColor</strong> : 일정표에 표시될 색상(String)</p>")
-    public ResultDto<Integer> putTour(@RequestBody TourPutReq p) {
-        int result = service.putTour(p);
+    public ResultDto<Integer> putTour(@RequestParam(name = "tour_id") long tourId, @RequestBody TourPutReq p) {
+        int result = service.putTour(tourId, p);
         return ResultDto.<Integer>builder()
                 .statusCode(HttpStatus.OK)
                 .resultMsg("")

@@ -1,12 +1,14 @@
 package com.green.firstproject.tour.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 @Getter
 @Setter
 public class TourPutReq {
-    @Schema(defaultValue = "1")
+//    @Schema(defaultValue = "1")
+    @JsonIgnore
     private long tourId;
     @Schema(defaultValue = "제목")
     private String title;

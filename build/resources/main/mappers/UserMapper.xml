@@ -9,14 +9,15 @@
         VALUES
         (#{uid}, #{upw}, #{nm}, #{email})
     </insert>
-
+    <!-- 유저 로그인 -->
     <select id="signInUser">
-        SELECT user_id AS userId, uid, upw, nm,
-            created_at AS createdAt, updated_at AS updatedAt, email
-        FROM user
-        WHERE uid=#{uid}
+        SELECT  user_id AS userId, uid, upw, nm,
+                created_at AS createdAt, updated_at AS updatedAt, email
+        FROM    user
+        WHERE   uid=#{uid}
     </select>
 
+    <!-- 유저  비밀번호 변경-->
     <update id="updateUpw">
         UPDATE user
         <set>
@@ -25,21 +26,22 @@
         WHERE uid=#{uid}
     </update>
 
-    <!--정보 수정시 로그인 처리-->
-
+    <!--유저 정보 삭제-->
     <delete id="deleteUserInfo">
         DELETE
         FROM user
         WHERE user_id=#{userId}
     </delete>
 
+    <!-- 유저정보 조회 -->
     <select id="getUserInfo">
-        SELECT user_id AS userId, uid, upw, nm,
+        SELECT  user_id AS userId, uid, upw, nm,
                 created_at AS createdAt, updated_at AS updatedAt, email
         FROM user
         WHERE uid=#{uid}
     </select>
 
+    <!-- -->
     <select id="searchUser">
         SELECT COUNT(uid) AS find
         FROM user

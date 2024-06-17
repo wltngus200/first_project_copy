@@ -11,9 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 @ToString
 public class SignUpReq {
-    @JsonIgnore
-    private long userId;
-
     private String uid;
     private String upw;
     private String nm;
