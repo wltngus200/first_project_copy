@@ -70,7 +70,7 @@ public class TourScheduleService {
 
     public List<TourScheduleGetListRes> getTourScheduleList(TourScheduleGetReq p) {
         List<TourScheduleGetListRes> result = mapper.getTourScheduleList(p);
-        if(result == null) {
+        if(result == null || result.isEmpty()) {
             throw new RuntimeException("리스트 조회 실패");
         }
         return result;
