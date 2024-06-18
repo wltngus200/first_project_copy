@@ -51,11 +51,11 @@ public class UserService {
         if (!BCrypt.checkpw(p.getUpw(), user.getUpw())) {
             throw new UserPasswordException(UserErrorMessage.USER_NOT_FOUND_USER_PASSWORD);
         }
-        if (!Validator.isValidPassword(p.getUpw())) {
+        if (!Validator.isValidPassword(p.getNewPw())) {
             throw new UserValidNotSuccessException(UserErrorMessage.USER_PASSWORD_CHECK_MESSAGE);
         }
-        String hashpw = BCrypt.hashpw(p.getUpw(), BCrypt.gensalt());
-        p.setUpw(hashpw);
+        String hashpw = BCrypt.hashpw(p.getNewPw(), BCrypt.gensalt());
+        p.setNewPw(hashpw);
 
         return mapper.updateUpw(p);
     }
