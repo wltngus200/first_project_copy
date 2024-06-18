@@ -11,6 +11,8 @@ import java.util.List;
 @Getter
 @Setter
 public class MainGetRes {
+    @Schema(defaultValue = "이름")
+    private String name;
     @Schema(defaultValue = "1")
     private long tourId;
     @Schema(defaultValue = "제목")
