@@ -120,6 +120,7 @@ public class UserController {
                     "<p> -2 : 새로바꾼 비밀번호가 양식에 맞지않음 </p>"
     )
     public Result updateUpw(@ModelAttribute @ParameterObject ChangeUpwReq p){
+        log.info("p {}",p);
         int result = 0;
         //유저 비밀번호 변경
         try {
