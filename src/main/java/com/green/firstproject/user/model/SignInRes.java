@@ -10,6 +10,4 @@ import lombok.Setter;
 @Builder
 public class SignInRes {
     private long userId;
-    private String uid;
-    private String upw;
 }

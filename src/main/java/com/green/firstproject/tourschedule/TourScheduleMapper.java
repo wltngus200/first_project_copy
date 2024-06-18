@@ -2,6 +2,7 @@ package com.green.firstproject.tourschedule;
 
 import com.green.firstproject.tourschedule.model.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,9 @@ public interface TourScheduleMapper {
     List<TourScheduleGetListRes> getTourScheduleList(TourScheduleGetReq p);
 
     int updateScheduleDay(TourSchedulePutReq p);
+
+    int getTourScheduleCheck(@Param("tourScheduleDay") String tourScheduleDay,
+                             @Param("tourScheduleStart") String tourScheduleStart,
+                             @Param("title") String title);
+
 }

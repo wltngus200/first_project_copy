@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResultDto<T>{
+public class ResultDto<T> implements Result {
     private HttpStatus statusCode;
     private String resultMsg;
     private T resultData;

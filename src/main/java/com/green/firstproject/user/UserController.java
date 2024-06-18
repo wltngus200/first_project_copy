@@ -6,6 +6,7 @@ import com.green.firstproject.common.model.ResultError;
 import com.green.firstproject.common.model.ResultSuccess;
 import com.green.firstproject.user.model.*;
 import com.green.firstproject.user.userexception.*;
+import com.green.firstproject.user.userexception.message.UserErrorMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +37,7 @@ public class UserController {
                     "<p> -2 : 아이디 유효성 검사 통과 실패</p> " +
                     "<p> -3 : 비밀번호 유효성 검사 통과 실패</p> " +
                     "<p> -4 : 이메일 유효성 검사 통과 실패 </p> " +
-                    "<p> -5 : 이메일 조회 쿼리 실패 </p>" +
+                    "<p> -5 : 이메일 조회 SQL 실패 </p>" +
                     "<p> -6 : 이메일 중복 </p>"
     )
     public Result signUpUser(@RequestBody SignUpReq p){
@@ -70,15 +71,16 @@ public class UserController {
 
         return ResultSuccess.<Integer>builder()
                 .statusCode(1)
-                .resultData(result)
+                .resultData(result) // 필요한가?
                 .resultMsg("회원가입에 성공하였습니다.")
                 .build();
 
     }
     @PostMapping("sign-in")
     @Operation(summary="유저 로그인",
-            description = "<strong> 변수명 : uid </strong> <p> 회원 아이디 ex)abc1231 </p>"+
-                          "<strong> 변수명 : upw </strong> <p> 회원 비밀번호 ex)aa123 </p>")
+            description =
+                    "<strong> 변수명 : uid </strong> <p> 회원 아이디 ex)abc1231 </p>"+
+                    "<strong> 변수명 : upw </strong> <p> 회원 비밀번호 ex)aa123 </p>")
     @ApiResponse(
             description =
                     "<p> ResponseCode 응답 코드 </p> " +
@@ -93,7 +95,7 @@ public class UserController {
         } catch (UserNotFoundException e) {
             return ResultError.builder().statusCode(-1).resultMsg(e.getMessage()).build();
         } catch (UserPasswordException e) {
-             return ResultError.builder().statusCode(-2).resultMsg(e.getMessage()).build();
+            return ResultError.builder().statusCode(-2).resultMsg(e.getMessage()).build();
         }
 
         log.info("{},{}",p,result);
@@ -107,15 +109,31 @@ public class UserController {
     @PutMapping("password")
     @Operation(summary="비밀번호 수정",
             description=
-                    "<strong> 변수명 : uid </strong> <p> 회원 아이디 ex)abc1231 </p>"+"\n"+
-                    "<strong> 변수명 : upw </strong> <p> 회원 비밀번호 ex)aa123 </p>" +"\n"+
-                    "<strong> 변수명 : newPw </strong> <p> 새로운 비밀번호 ex)bb123 </p>"+"\n")
-    public ResultDto<Integer> updateUpw(@ModelAttribute @ParameterObject ChangeUpwReq p){
-        int result=service.updateUpw(p);
-        return ResultDto.<Integer>builder()
+                    "<strong> 변수명 : uid </strong> <p> 회원 아이디 ex)abc1231 </p>"+
+                    "<strong> 변수명 : upw </strong> <p> 회원 비밀번호 ex)aa123 </p>" +
+                    "<strong> 변수명 : newPw </strong> <p> 새로운 비밀번호 ex)bb123 </p>")
+    @ApiResponse(
+            description =
+                    "<p> ResponseCode 응답 코드 </p> " +
+                    "<p>  1 : 정상 </p> " +
+                    "<p> -1 : 현재 비밀번호가 틀림 </p> " +
+                    "<p> -2 : 새로바꾼 비밀번호가 양식에 맞지않음 </p>"
+    )
+    public Result updateUpw(@ModelAttribute @ParameterObject ChangeUpwReq p){
+        int result = 0;
+        //유저 비밀번호 변경
+        try {
+            service.updateUpw(p);
+        } catch (UserPasswordException e) {
+            return ResultError.builder().statusCode(-1).resultMsg(e.getMessage()).build();
+        } catch (UserValidNotSuccessException e) {
+            return ResultError.builder().statusCode(-2).resultMsg(e.getMessage()).build();
+        }
+
+
+        return ResultSuccess.<Integer>builder()
                 .resultMsg("비밀번호를 성공적으로 변경하였습니다.")
-                .resultData(result)
-                .statusCode(HttpStatus.OK)
+                .statusCode(1)
                 .build();
     }
 
@@ -134,8 +152,8 @@ public class UserController {
     @GetMapping
     @Operation(summary="마이 페이지",
             description = "<strong> 변수명 : uid </strong> <p> 회원 PK ex)17 </p>")
-    public ResultDto<UserEntity> getUserInfo(@RequestParam(name = "uid") String uid){
-        UserEntity user=service.getUserInfo(uid);
+    public ResultDto<UserEntity> getUserMyPage(@RequestParam(name = "signed_user_id") long signedUserId){
+        UserEntity user=service.getUserMyPage(signedUserId);
         return ResultDto.<UserEntity>builder()
                 .statusCode(HttpStatus.OK)
                 .resultData(user)

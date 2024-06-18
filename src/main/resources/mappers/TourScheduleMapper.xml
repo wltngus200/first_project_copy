@@ -46,5 +46,13 @@
         ORDER BY tour_schedule_day ASC;
     </select>
 
+    <select id="getTourScheduleCheck">
+        SELECT COUNT(*)
+        FROM tour_schedule
+        WHERE tour_schedule_day = #{tourScheduleDay}
+        AND tour_schedule_start = #{tourScheduleStart}
+        AND title = #{title}
+    </select>
+
 
 </mapper>

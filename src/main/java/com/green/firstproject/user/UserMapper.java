@@ -8,10 +8,12 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     int signUpUser(SignUpReq p);
-    UserEntity signInUser(SignInReq p); //selectUserId
 
     int updateUpw(ChangeUpwReq p);
     int deleteUserInfo(long userId);
     UserEntity getUserInfo(String uid);
+    //user my page
+    UserEntity getUserMyPage(long signedUserId);
+
     String getUserEmailInfo(String email);
 }

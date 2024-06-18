@@ -13,7 +13,5 @@ public class TourSchedulePutReq {
     private String tourScheduleEnd;
     private String title;
     private String contents;
-
-
     private long cost;
 }
