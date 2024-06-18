@@ -46,11 +46,14 @@ public class UserService {
     }
     // 비밀번호 변경
     public int updateUpw(ChangeUpwReq p) {
-        SignInReq req = SignInReq.builder().uid(p.getUid()).upw(p.getUpw()).build();
-        signInUser(req);//바꾸기 전, 재 로그인으로 본인 확인
-        //리턴 없이
-        String newHashPass = BCrypt.hashpw(p.getNewPw(), BCrypt.gensalt());
-        p.setNewPw(newHashPass);
+        UserEntity user = mapper.getUserInfo(p.getUid());
+        // p.getUpw
+        if (!BCrypt.checkpw(p.getUpw(), user.getUpw())) {
+            throw new UserPasswordException(UserErrorMessage.USER_NOT_FOUND_USER_PASSWORD);
+        }
+        if (!Validator.isValidPassword(p.getUpw())) {
+            throw new UserValidNotSuccessException(UserErrorMessage.USER_PASSWORD_CHECK_MESSAGE);
+        }
 
         return mapper.updateUpw(p);
     }
