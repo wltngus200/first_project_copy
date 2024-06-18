@@ -7,5 +7,5 @@ public class TourScheduleCheck {
 
     private String tourScheduleDay;
     private String tourScheduleStart;
-    private String title;
+    private String tourScheduleTitle;
 }
