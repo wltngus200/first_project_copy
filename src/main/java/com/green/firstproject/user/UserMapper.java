@@ -12,5 +12,8 @@ public interface UserMapper {
     int updateUpw(ChangeUpwReq p);
     int deleteUserInfo(long userId);
     UserEntity getUserInfo(String uid);
+    //user my page
+    UserEntity getUserMyPage(long signedUserId);
+
     String getUserEmailInfo(String email);
 }
