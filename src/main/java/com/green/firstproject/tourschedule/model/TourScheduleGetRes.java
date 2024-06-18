@@ -11,7 +11,7 @@ public class TourScheduleGetRes {
     private String tourScheduleDay;
     private String tourScheduleStart;
     private String tourScheduleEnd;
-    private String title;
+    private String tourScheduleTitle;
     private String contents;
     private String cost;
 }

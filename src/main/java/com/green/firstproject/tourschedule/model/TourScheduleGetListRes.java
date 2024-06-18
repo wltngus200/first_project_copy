@@ -19,7 +19,7 @@ public class TourScheduleGetListRes {
     @Schema(name = "tour_schedule_end")
     private String tourScheduleEnd;
 
-    private String title;
+    private String tourScheduleTitle;
 
 
 }

@@ -9,7 +9,7 @@
         , tour_schedule_day = #{tourScheduleDay}
         , tour_schedule_start = #{tourScheduleStart}
         , tour_schedule_end = #{tourScheduleEnd}
-        , title = #{title}
+        , title = #{tourScheduleTitle}
         , contents = #{contents}
         , cost = #{cost}
     </insert>
@@ -21,7 +21,7 @@
     
     <select id="getTourSchedule">
         SELECT tour_schedule_id AS tourScheduleId, tour_schedule_day AS tourScheduleDay, tour_schedule_start AS tourScheduleStart
-        , tour_schedule_end AS tourScheduleEnd, title, contents, cost
+        , tour_schedule_end AS tourScheduleEnd, title AS tourScheduleTitle, contents, cost
         FROM tour_schedule
         WHERE tour_schedule_id = #{tourScheduleId}
     </select>
@@ -32,7 +32,7 @@
             tour_schedule_day = #{tourScheduleDay},
             tour_schedule_start = #{tourScheduleStart},
             tour_schedule_end = #{tourScheduleEnd},
-            title = #{title},
+            title = #{tourScheduleTitle},
             contents = #{contents},
             cost = #{cost}
         WHERE tour_schedule_id = #{tourScheduleId}
@@ -40,7 +40,7 @@
 
     <select id="getTourScheduleList">
         SELECT tour_schedule_id AS tourScheduleId, tour_schedule_day AS tourScheduleDay, tour_schedule_start AS tourScheduleStart
-        , tour_schedule_end AS tourScheduleEnd, title, contents, cost
+        , tour_schedule_end AS tourScheduleEnd, title AS tourScheduleTitle, contents, cost
         FROM tour_schedule
         WHERE tour_id = #{tourId} AND tour_schedule_day = #{tourScheduleDay}
         ORDER BY tour_schedule_day ASC;
@@ -51,7 +51,7 @@
         FROM tour_schedule
         WHERE tour_schedule_day = #{tourScheduleDay}
         AND tour_schedule_start = #{tourScheduleStart}
-        AND title = #{title}
+        AND title = #{tourScheduleTitle}
     </select>
 
 
