@@ -54,6 +54,8 @@ public class UserService {
         if (!Validator.isValidPassword(p.getUpw())) {
             throw new UserValidNotSuccessException(UserErrorMessage.USER_PASSWORD_CHECK_MESSAGE);
         }
+        String hashpw = BCrypt.hashpw(p.getUpw(), BCrypt.gensalt());
+        p.setUpw(hashpw);
 
         return mapper.updateUpw(p);
     }
