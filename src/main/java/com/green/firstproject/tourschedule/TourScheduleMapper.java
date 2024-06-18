@@ -20,6 +20,6 @@ public interface TourScheduleMapper {
 
     int getTourScheduleCheck(@Param("tourScheduleDay") String tourScheduleDay,
                              @Param("tourScheduleStart") String tourScheduleStart,
-                             @Param("title") String title);
+                             @Param("tourScheduleTitle") String title);
 
 }
