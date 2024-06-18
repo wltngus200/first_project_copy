@@ -53,7 +53,7 @@
         SELECT user_id AS userId, uid, upw, nm,
             created_at AS createdAt, updated_at AS updatedAt, email
         FROM user
-        WHERE userId=#{signedUserId}
+        WHERE user_id=#{signedUserId}
     </select>
 
     <!-- 이메일 조회 -->
