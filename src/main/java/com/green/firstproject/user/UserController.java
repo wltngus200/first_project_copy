@@ -117,10 +117,19 @@ public class UserController {
                     "<p> ResponseCode 응답 코드 </p> " +
                     "<p>  1 : 정상 </p> " +
                     "<p> -1 : 현재 비밀번호가 틀림 </p> " +
-                    "<p> -2 : 새로바꾼 비밀번호가 양식에 맞지않음 </p> "
+                    "<p> -2 : 새로바꾼 비밀번호가 양식에 맞지않음 </p>"
     )
     public Result updateUpw(@ModelAttribute @ParameterObject ChangeUpwReq p){
-        int result = service.updateUpw(p);
+        int result = 0;
+        //유저 비밀번호 변경
+        try {
+            service.updateUpw(p);
+        } catch (UserPasswordException e) {
+            return ResultError.builder().statusCode(-1).resultMsg(e.getMessage()).build();
+        } catch (UserValidNotSuccessException e) {
+            return ResultError.builder().statusCode(-2).resultMsg(e.getMessage()).build();
+        }
+
 
         return ResultSuccess.<Integer>builder()
                 .resultMsg("비밀번호를 성공적으로 변경하였습니다.")
