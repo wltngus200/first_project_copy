@@ -138,15 +138,23 @@ public class TourScheduleController {
             "<p><strong> tourId</strong> : 여행 PK (long) </p>" +
             "<p><strong> tourScheduleDay</strong> : 여행 일자 (String) </p>")
     public ResultDto<List<TourScheduleGetListRes>> getTourScheduleList(@ParameterObject @ModelAttribute TourScheduleGetReq p) {
+
         try {
+
             List<TourScheduleGetListRes> result = service.getTourScheduleList(p);
-
-
-        return ResultDto.<List<TourScheduleGetListRes>>builder()
-                .statusCode(HttpStatus.OK)
-                .resultMsg("리스트형태로 조회 성공")
-                .resultData(result)
-                .build();
+            if(!(result.isEmpty())) {
+                return ResultDto.<List<TourScheduleGetListRes>>builder()
+                        .statusCode(HttpStatus.OK)
+                        .resultMsg("리스트형태로 조회 성공")
+                        .resultData(result)
+                        .build();
+            } else {
+                return ResultDto.<List<TourScheduleGetListRes>>builder()
+                        .statusCode(HttpStatus.OK)
+                        .resultMsg("등록된 스케줄이 없습니다")
+                        .resultData(result)
+                        .build();
+            }
         } catch (RuntimeException e) {
             return ResultDto.<List<TourScheduleGetListRes>>builder()
                     .statusCode(HttpStatus.BAD_REQUEST)
