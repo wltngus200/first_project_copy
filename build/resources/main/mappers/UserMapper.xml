@@ -33,7 +33,7 @@
         WHERE user_id=#{userId}
     </delete>
 
-    <!-- 유저정보 조회 -->
+    <!-- 로그인 시 해당 유저가 있는지 확인 -->
     <select id="getUserInfo">
         SELECT  user_id AS userId, uid, upw, nm,
                 created_at AS createdAt, updated_at AS updatedAt, email
@@ -48,12 +48,12 @@
         WHERE uid=#{uid}
     </select>
 
-    <!--로그인 처리..!-->
-    <select id="signedUserId">
+    <!--user 마이페이지-->
+    <select id="getUserMyPage">
         SELECT user_id AS userId, uid, upw, nm,
-        created_at AS createdAt, updated_at AS updatedAt, email
+            created_at AS createdAt, updated_at AS updatedAt, email
         FROM user
-        WHERE uid=#{uid}
+        WHERE userId=#{signedUserId}
     </select>
 
     <!-- 이메일 조회 -->

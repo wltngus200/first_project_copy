@@ -15,8 +15,10 @@ public class MainService {
     private final MainMapper mapper;
     public MainGetRes getMain(long signedUserId) {
         MainGetRes mainRes = mapper.getMainTour(signedUserId);
-        List<GetCheckListRes> mainChecklist = mapper.getMainChecklist(mainRes.getTourId());
-        mainRes.setCheckList(mainChecklist);
+        if(mainRes != null) {
+            List<GetCheckListRes> mainChecklist = mapper.getMainChecklist(mainRes.getTourId());
+            mainRes.setCheckList(mainChecklist);
+        }
         return mainRes;
     }
 }

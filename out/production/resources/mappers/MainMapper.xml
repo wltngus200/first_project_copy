@@ -2,11 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.green.firstproject.main.MainMapper">
     <select id="getMainTour">
-        SELECT tour_id AS tourId, title, tour_location AS tourLocation
-        , tour_startday AS tourStartDay, tour_finishday AS tourFinishDay
-        , tour_Budget AS tourBudget, created_at AS createdAt, updated_at AS updatedAt
-        FROM tour
-        WHERE user_id = #{signedUserId}
+        SELECT B.nm AS name, A.tour_id AS tourId, A.title, A.tour_location AS tourLocation
+        , A.tour_startday AS tourStartDay, A.tour_finishday AS tourFinishDay
+        , A.tour_Budget AS tourBudget, A.created_at AS createdAt, A.updated_at AS updatedAt
+        FROM tour A
+        RIGHT JOIN user B
+        ON A.user_id = B.user_id
+        WHERE B.user_id = #{signedUserId}
         ORDER BY tour_startday, tour_id
         LIMIT 1
     </select>

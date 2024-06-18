@@ -63,8 +63,8 @@ public class UserService {
         //탈퇴가 진짜 다시 로그인 시켜볼 필요가 있나???
     }
     //유저 마이페이지
-    public UserEntity getUserInfo(String uid) {
-        return mapper.getUserInfo(uid);
+    public UserEntity getUserMyPage(long signedUserId) {
+        return mapper.getUserMyPage(signedUserId);
     }
 
     //회원가입 유효성 검사
@@ -96,6 +96,8 @@ public class UserService {
         }
     }
 
+    //프론트 요청 uid->user PK 수정 중 쓰이지 않는 메소드
+    /*
     public int searchUser(String uid){
         UserEntity user = mapper.getUserInfo(uid);
 
@@ -108,5 +110,5 @@ public class UserService {
         }
 
         return idCheck;
-    }
+    }*/
 }
