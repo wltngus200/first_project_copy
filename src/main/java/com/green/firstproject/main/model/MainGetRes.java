@@ -31,5 +31,6 @@ public class MainGetRes {
     private String updatedAt;
     @Schema(defaultValue = "이름")
     private String name;
+    @Builder.Default
     private List<GetCheckListRes> checkList = new ArrayList<>();
 }
