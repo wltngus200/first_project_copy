@@ -2,17 +2,17 @@ package com.green.firstproject.main.model;
 
 import com.green.firstproject.tourchecklist.model.GetCheckListRes;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MainGetRes {
-    @Schema(defaultValue = "이름")
-    private String name;
     @Schema(defaultValue = "1")
     private long tourId;
     @Schema(defaultValue = "제목")
@@ -29,5 +29,7 @@ public class MainGetRes {
     private String createdAt;
     @Schema(defaultValue = "2024-06-05 14:27:30")
     private String updatedAt;
+    @Schema(defaultValue = "이름")
+    private String name;
     private List<GetCheckListRes> checkList = new ArrayList<>();
 }
