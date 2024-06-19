@@ -22,7 +22,7 @@ public class TourScheduleService {
         if(p.getCost() < 0) {
             throw new ScheduleRequiredException("음수를 입력 할 수 없음");
         }
-        if(p.getTitle() == null || p.getTitle().isBlank()) {
+        if(p.getTourScheduleTitle() == null || p.getTourScheduleTitle().isBlank()) {
             throw new ScheduleRequiredException("제목은 필수값");
         }
         if(p.getTourScheduleStart() == null || p.getTourScheduleStart().isBlank()) {
@@ -32,7 +32,7 @@ public class TourScheduleService {
             throw new ScheduleRequiredException("날짜 다시 선택");
         }
         //중복 체크
-        int check = mapper.getTourScheduleCheck(p.getTourScheduleDay(), p.getTourScheduleStart(), p.getTitle());
+        int check = mapper.getTourScheduleCheck(p.getTourScheduleDay(), p.getTourScheduleStart(), p.getTourScheduleTitle());
 
         log.info("check : {}", check);
 
@@ -83,7 +83,7 @@ public class TourScheduleService {
         if(p.getTourScheduleDay() == null || p.getTourScheduleDay().isBlank()) {
             throw new ScheduleRequiredException("날짜 다시 선택");
         }
-        if(p.getTitle() == null || p.getTitle().isBlank()) {
+        if(p.getTourScheduleTitle() == null || p.getTourScheduleTitle().isBlank()) {
             throw new ScheduleRequiredException("제목은 필수값");
         }
         if(p.getTourScheduleStart() == null || p.getTourScheduleStart().isBlank()) {

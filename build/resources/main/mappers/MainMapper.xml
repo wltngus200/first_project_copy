@@ -8,7 +8,7 @@
         FROM tour A
         RIGHT JOIN user B
         ON A.user_id = B.user_id
-        WHERE B.user_id = #{signedUserId}
+        WHERE B.user_id = #{signedUserId} AND A.tour_startday >= current_date
         ORDER BY tour_startday, tour_id
         LIMIT 1
     </select>

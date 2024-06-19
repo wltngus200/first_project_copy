@@ -70,6 +70,7 @@ public class TourScheduleController {
                     .resultData(0L)
                     .build();
         } catch (Exception e) {
+            e.printStackTrace();
             return ResultDto.<Long>builder()
                     .statusCode(HttpStatus.BAD_REQUEST)
                     .resultMsg("에러 발생")
