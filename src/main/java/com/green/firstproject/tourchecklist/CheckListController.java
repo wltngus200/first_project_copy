@@ -23,12 +23,12 @@ public class CheckListController {
             "<p><strong>tour_id </strong>: 투어PK(long)" +
             "<p><strong>title</strong> : 투어타이틀(String)"
     )
-    public ResultDto<Integer> postCheckList(@RequestBody PostCheckListReq p){
+    public ResultDto<Long> postCheckList(@RequestBody PostCheckListReq p){
         log.info("p: {}", p);
-        int result = service.postCheckList(p);
+        long result = service.postCheckList(p);
 
 
-        return ResultDto.<Integer>builder()
+        return ResultDto.<Long>builder()
                 .resultData(result)
                 .statusCode(HttpStatus.OK)
                 .resultMsg("물품이 등록되었습니다.")
