@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface CheckListMapper {
-    int postCheckList(PostCheckListReq p);
+    long postCheckList(PostCheckListReq p);
     int putCheckList(PutCheckListReq p);
     int deleteCheckList(int p);
     List<GetCheckListRes> getCheckList(GetCheckListReq p);

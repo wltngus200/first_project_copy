@@ -1,14 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.09cdf8ae.css",
-    "main.js": "/static/js/main.d2d3e936.js",
-    "static/media/ALOTlogo.jpg": "/static/media/ALOTlogo.53c4fabf56d7b37625a1.jpg",
+    "main.css": "/static/css/main.5bdcc5d1.css",
+    "main.js": "/static/js/main.fff78be8.js",
+    "static/media/vacation-4192123_1280.jpg": "/static/media/vacation-4192123_1280.2f275d7e233a70571683.jpg",
+    "static/media/maldive-islands-1445675_1280.jpg": "/static/media/maldive-islands-1445675_1280.6cc78e9d4e472c1c757c.jpg",
+    "static/media/mountains-7963159_1280.jpg": "/static/media/mountains-7963159_1280.caf0866de92e207cfc99.jpg",
+    "static/media/nepal-1309205_1280.jpg": "/static/media/nepal-1309205_1280.b0236e14f2f1a67dba69.jpg",
+    "static/media/ad3.jpg": "/static/media/ad3.fb124e277f615a39f6ef.jpg",
+    "static/media/ad1.png": "/static/media/ad1.ec0387fb346d99107c16.png",
+    "static/media/ALOTlogo.png": "/static/media/ALOTlogo.b4caac651d2ea5611cd0.png",
+    "static/media/Logo.jpg": "/static/media/Logo.53c4fabf56d7b37625a1.jpg",
+    "static/media/ad2.png": "/static/media/ad2.9b0734bbace1a3147951.png",
+    "static/media/ad5.jpg": "/static/media/ad5.bd0abc9dfdd8fd27613c.jpg",
     "index.html": "/index.html",
-    "main.09cdf8ae.css.map": "/static/css/main.09cdf8ae.css.map",
-    "main.d2d3e936.js.map": "/static/js/main.d2d3e936.js.map"
+    "main.5bdcc5d1.css.map": "/static/css/main.5bdcc5d1.css.map",
+    "main.fff78be8.js.map": "/static/js/main.fff78be8.js.map"
   },
   "entrypoints": [
-    "static/css/main.09cdf8ae.css",
-    "static/js/main.d2d3e936.js"
+    "static/css/main.5bdcc5d1.css",
+    "static/js/main.fff78be8.js"
   ]
 }

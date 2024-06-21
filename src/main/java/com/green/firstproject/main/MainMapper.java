@@ -10,5 +10,5 @@ import java.util.List;
 public interface MainMapper {
     MainGetRes getMainTour(long signedUserId);
     List<GetCheckListRes> getMainChecklist(long tourId);
-
+    String getUserName(long signedUserId);
 }

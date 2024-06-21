@@ -14,9 +14,10 @@ import java.util.List;
 public class CheckListService {
     private final CheckListMapper mapper;
 
-    public int postCheckList(PostCheckListReq p) {
+    public long postCheckList(PostCheckListReq p) {
         log.info("{}", p.toString());
-        return mapper.postCheckList(p);
+        mapper.postCheckList(p);
+        return p.getChecklistId();
     }
 
     public int putCheckList(PutCheckListReq p) {
